@@ -133,3 +133,98 @@ console.log(typeof [1, 2, 3]);    // "object"
 console.log(typeof function(){}); // "function"
 
 ```
+
+#### ✅ Summary
+
+| Category         | Data Types |
+|--------------|-------------|
+| Primitive     | 	`String`, `Number`, `Boolean`, `Null`, `Undefined`, `BigInt`, `Symbol` |
+| Reference     | `Object`, `Array`, `Function` |
+
+
+📘 Conclusion
+
+- JavaScript is essential for dynamic web development.
+
+- It differs significantly from Java despite the similar name.
+
+- Mastering JavaScript data types is crucial for writing robust code.
+
+- Always be aware of how data is stored and manipulated—by value vs by reference.
+
+---
+---
+---
+
+## 🔹What is the difference between var, let, and const in JavaScript?
+
+In JavaScript, variables can be declared using `var`, `let`, and `const`. Each has different behavior in terms of **scope**, **hoisting**, **reassignment**, and **redeclaration**. This document explains each with examples.
+
+---
+
+#### 🔹 1. `var`
+
+### ✅ Features:
+- **Function-scoped**
+- **Can be redeclared** and **reassigned**
+- **Hoisted** and initialized as `undefined`
+
+#### 🔸 Example:
+
+```javascript
+// Function scope
+function testVar() {
+  if (true) {
+    var x = 10;
+  }
+  console.log(x); // ✅ 10 — function-scoped
+}
+
+testVar();
+
+// Redeclaration allowed
+var a = 1;
+var a = 2; // ✅ No error
+console.log(a); // 2
+
+// Hoisting
+console.log(b); // ✅ undefined (hoisted)
+var b = 5;
+console.log(b); // 5
+```
+
+#### 🔹 1. `let`
+
+### ✅ Features:
+- **Block-scoped**
+- **Can be reassigned, but cannot be redeclared in the same scope**
+- **Hoisted, but not initialized**
+
+#### 🔸 Example:
+
+```javascript
+// Block scope
+function testLet() {
+  if (true) {
+    let y = 20;
+    console.log(y); // ✅ 20
+  }
+  // console.log(y); ❌ ReferenceError
+}
+
+testLet();
+
+// Redeclaration not allowed
+let c = 3;
+// let c = 4; ❌ SyntaxError: Identifier 'c' has already been declared
+
+// Hoisting
+// console.log(d); ❌ ReferenceError
+let d = 10;
+console.log(d); // 10
+```
+
+
+
+
+
