@@ -14,8 +14,6 @@ JavaScript enables developers to:
 
 It is **event-driven**, **asynchronous**, and **prototype-based**, making it very effective for building responsive user interfaces and single-page applications.
 
----
-
 #### Key Features of JavaScript
 
 - **Client-side execution**: Runs in the user's browser.
@@ -24,8 +22,6 @@ It is **event-driven**, **asynchronous**, and **prototype-based**, making it ver
 - **Lightweight**: Minimal syntax and structure.
 - **Asynchronous programming**: Uses Promises and async/await.
 - **Object-oriented**: Uses prototype-based inheritance.
-
----
 
 #### How Does JavaScript Differ From Java?
 
@@ -43,7 +39,6 @@ Although their names sound similar, JavaScript and Java are completely different
 
 > **Note**: The similarity in names was a marketing strategy during the early days of JavaScript. JavaScript was originally called *LiveScript*, but was renamed to JavaScript to capitalize on the popularity of Java at the time.
 
----
 
 #### When to Use JavaScript
 
@@ -54,8 +49,6 @@ JavaScript is ideal for:
 - Backend development (Node.js)
 - Progressive Web Apps (PWAs)
 - Real-time applications (chats, games)
-
----
 
 #### Conclusion
 
@@ -70,8 +63,6 @@ JavaScript is an essential tool in modern web development, enabling rich and int
 ## 🔹What are the different data types in JavaScript?
 
 JavaScript has two main categories of data types: **Primitive** and **Non-Primitive (Reference)**.
-
----
 
 #### 1. Primitive Data Types
 
@@ -160,11 +151,9 @@ console.log(typeof function(){}); // "function"
 
 In JavaScript, variables can be declared using `var`, `let`, and `const`. Each has different behavior in terms of **scope**, **hoisting**, **reassignment**, and **redeclaration**. This document explains each with examples.
 
----
-
 #### 🔹 1. `var`
 
-### ✅ Features:
+#### ✅ Features:
 - **Function-scoped**
 - **Can be redeclared** and **reassigned**
 - **Hoisted** and initialized as `undefined`
@@ -193,9 +182,9 @@ var b = 5;
 console.log(b); // 5
 ```
 
-#### 🔹 1. `let`
+#### 🔹 2. `let`
 
-### ✅ Features:
+#### ✅ Features:
 - **Block-scoped**
 - **Can be reassigned, but cannot be redeclared in the same scope**
 - **Hoisted, but not initialized**
@@ -224,7 +213,471 @@ let d = 10;
 console.log(d); // 10
 ```
 
+#### 🔹 3. `const`
+
+#### ✅ Features:
+- **Block-scoped**
+- **Cannot be redeclared or reassigned**
+- **Must be initialized at declaration**
+- **Values can be mutated if the variable is an object or array**
+
+#### 🔸 Example:
+
+```javascript
+// Block scope
+function testConst() {
+  if (true) {
+    const z = 30;
+    console.log(z); // ✅ 30
+  }
+  // console.log(z); ❌ ReferenceError
+}
+
+testConst();
+
+// Reassignment not allowed
+const e = 100;
+// e = 200; ❌ TypeError: Assignment to constant variable
+
+// Mutating object
+const person = { name: "Alice" };
+person.name = "Bob"; // ✅ Allowed (mutating property)
+console.log(person.name); // "Bob"
+
+// Reassigning object reference
+// person = { name: "Charlie" }; ❌ TypeError
+```
 
 
 
+#### 🔁 Comparison Table
+
+| Feature                   | `var`                    | `let`                        | `const`                      |
+|---------------------------|---------------------------|-------------------------------|-------------------------------|
+| **Scope**                | Function-scoped           | Block-scoped                 | Block-scoped                 |
+| **Hoisting**             | ✅ Yes (initialized as `undefined`) | ✅ Yes (in TDZ\*)     | ✅ Yes (in TDZ\*)           |
+| **Redeclarable**         | ✅ Yes                   | ❌ No                        | ❌ No                        |
+| **Reassignable**         | ✅ Yes                   | ✅ Yes                       | ❌ No                        |
+| **Initialization Required** | ❌ No                | ❌ No                        | ✅ Yes                       |
+| **Mutability (objects)**| ✅ Yes                   | ✅ Yes                       | ✅ Yes (props can change)    |
+
+
+#### ✅ Best Practices
+
+- ✅ Use const by default.
+- ✅ Use let if you need to reassign.
+- ❌ Avoid var in modern JavaScript (legacy usage only).
+
+
+#### 📘 Summary
+
+- `var` is function-scoped, hoisted with undefined, and should generally be avoided.
+- `let` is block-scoped, hoisted but uninitialized, and allows reassignment.
+- `const` is block-scoped, hoisted and initialized, and cannot be reassigned or mutated.
+
+---
+---
+---
+
+## 🔹What are the differences between null and undefined? 
+
+
+In JavaScript, both `null` and `undefined` represent absence of value, but they are used differently and behave differently.
+
+#### 🔹 `undefined`
+
+#### ✅ Definition:
+`undefined` means a variable has been **declared but not assigned** a value.
+
+#### 🔸 Characteristics:
+- Assigned by **JavaScript by default**
+- Returned when:
+  - A variable is declared but not assigned
+  - A function does not return a value
+  - Accessing a non-existent object property
+- Type is: `"undefined"`
+
+#### 🔸 Code Example:
+
+```javascript
+let x;
+console.log(x); // ✅ undefined (not assigned)
+
+function test() {}
+console.log(test()); // ✅ undefined (no return)
+
+let user = {};
+console.log(user.name); // ✅ undefined (property doesn't exist)
+```
+
+#### 🔹 `null`
+
+#### ✅ Definition:
+`null` is an explicit value assigned by the programmer to indicate "no value".
+
+#### 🔸 Characteristics:
+- Must be manually assigned
+- Commonly used to reset or clear a variable
+- Type is: `"object"` (this is a known bug in JavaScript)
+
+#### 🔸 Code Example:
+
+```javascript
+let y = null;
+console.log(y); // ✅ null
+
+let person = {
+  name: null // means intentionally empty
+};
+console.log(person.name); // null
+```
+
+#### 🔁 Comparison Table
+
+| Feature             | `undefined`                              | `null`                               |
+|---------------------|-------------------------------------------|---------------------------------------|
+| **Meaning**         | Declared but not assigned a value         | Intentional absence of any object value |
+| **Set by**          | JavaScript automatically                  | Programmer explicitly                 |
+| **Type**            | `"undefined"`                             | `"object"` (legacy quirk)             |
+| **Usage**           | Default for uninitialized variables       | Used to reset or clear variables      |
+| **Equality (`==`)** | `null == undefined` → ✅ `true`           | Same loose equality                  |
+| **Strict Equality (`===`)** | `undefined === null` → ❌ `false` | Different types                       |
+
+#### ✅ When to Use
+
+| Use Case                  | Recommended Value |
+|---------------------------|-------------------|
+| Variable not yet assigned | `undefined`        |
+| Clear/reset a variable    | `null`             |
+| Missing object property   | `undefined`        |
+| Empty value on purpose    | `null`             |
+
+---
+---
+---
+
+## 🔹Explain all JavaScript operators and their purpose of use?
+
+JavaScript operators are symbols used to perform operations on operands (values and variables). Here's a full list categorized by type:
+
+#### 🔹 1. Arithmetic Operators
+
+| Operator | Description         | Example        | Result |
+|----------|---------------------|----------------|--------|
+| `+`      | Addition             | `5 + 2`        | `7`    |
+| `-`      | Subtraction          | `5 - 2`        | `3`    |
+| `*`      | Multiplication       | `5 * 2`        | `10`   |
+| `/`      | Division             | `10 / 2`       | `5`    |
+| `%`      | Modulus (remainder) | `5 % 2`        | `1`    |
+| `**`     | Exponentiation       | `2 ** 3`       | `8`    |
+| `++`     | Increment            | `x++`          | `x + 1`|
+| `--`     | Decrement            | `x--`          | `x - 1`|
+
+#### 🔹 2. Assignment Operators
+
+| Operator | Description             | Example       | Equivalent To   |
+|----------|-------------------------|---------------|-----------------|
+| `=`      | Assign                   | `x = 5`       | `x = 5`         |
+| `+=`     | Add and assign           | `x += 2`      | `x = x + 2`     |
+| `-=`     | Subtract and assign      | `x -= 2`      | `x = x - 2`     |
+| `*=`     | Multiply and assign      | `x *= 2`      | `x = x * 2`     |
+| `/=`     | Divide and assign        | `x /= 2`      | `x = x / 2`     |
+| `%=`     | Modulus and assign       | `x %= 2`      | `x = x % 2`     |
+| `**=`    | Exponent and assign      | `x **= 2`     | `x = x ** 2`    |
+
+#### 🔹 3. Comparison Operators
+
+| Operator | Description                    | Example         | Result         |
+|----------|--------------------------------|------------------|----------------|
+| `==`     | Equal (loose)                  | `5 == '5'`       | `true`         |
+| `===`    | Strict equal (type + value)    | `5 === '5'`      | `false`        |
+| `!=`     | Not equal (loose)              | `5 != '5'`       | `false`        |
+| `!==`    | Strict not equal               | `5 !== '5'`      | `true`         |
+| `>`      | Greater than                   | `5 > 3`          | `true`         |
+| `<`      | Less than                      | `3 < 5`          | `true`         |
+| `>=`     | Greater than or equal to       | `5 >= 5`         | `true`         |
+| `<=`     | Less than or equal to          | `4 <= 3`         | `false`        |
+
+#### 🔹 4. Logical Operators
+
+| Operator | Description             | Example              | Result   |
+|----------|-------------------------|-----------------------|----------|
+| `&&`     | Logical AND              | `true && false`       | `false`  |
+| `||`     | Logical OR               | `true || false`       | `true`   |
+| `!`      | Logical NOT              | `!true`               | `false`  |
+
+#### 🔹 5. Bitwise Operators
+
+| Operator | Description     | Example   | Result |
+|----------|-----------------|-----------|--------|
+| `&`      | AND              | `5 & 1`   | `1`    |
+| `|`      | OR               | `5 | 1`   | `5`    |
+| `^`      | XOR              | `5 ^ 1`   | `4`    |
+| `~`      | NOT              | `~5`      | `-6`   |
+| `<<`     | Left shift       | `5 << 1`  | `10`   |
+| `>>`     | Right shift      | `5 >> 1`  | `2`    |
+| `>>>`    | Zero-fill right shift | `-5 >>> 1` | Big unsigned int |
+
+#### 🔹 6. String Operators
+
+| Operator | Description      | Example             | Result         |
+|----------|------------------|----------------------|----------------|
+| `+`      | Concatenation     | `'Hello' + ' World'` | `'Hello World'` |
+| `+=`     | Append to string  | `str += '!'`         | `'Hello!'`     |
+
+#### 🔹 7. Type Operators
+
+| Operator     | Description                | Example                 | Result       |
+|--------------|----------------------------|--------------------------|--------------|
+| `typeof`     | Returns data type          | `typeof 123`             | `"number"`   |
+| `instanceof` | Checks if object is instance of class | `arr instanceof Array` | `true`       |
+
+#### 🔹 8. Ternary Operator
+
+Shorthand for `if...else`.
+
+```javascript
+let age = 18;
+let status = age >= 18 ? "Adult" : "Minor";
+console.log(status); // "Adult"
+```
+
+#### 🔹 9. Comma Operator
+
+Allows multiple expressions where only one is expected (returns the last).
+
+```javascript
+let result = (1 + 2, 3 + 4);
+console.log(result); // 7
+```
+
+#### 🔹 10. Optional Chaining (?.) and Nullish Coalescing (??)
+
+✅ Optional Chaining:
+
+```javascript
+let user = {};
+console.log(user?.profile?.name); // undefined (no error)
+```
+
+✅ Nullish Coalescing:
+
+```javascript
+let username = null;
+let display = username ?? 'Guest';
+console.log(display); // Guest
+```
+
+---
+---
+---
+
+## 🔹 What is the difference between `==` and `===` in JavaScript?
+
+🔁 `==` (Equality Operator)
+
+- Performs type coercion: If the operands are of different types, it tries to convert them to the same type before comparing.
+- Known as loose equality.
+
+#### 🔸 Code Example:
+
+```javascript
+5 == '5'     // true (string '5' is converted to number 5)
+0 == false   // true (false is coerced to 0)
+null == undefined  // true (they are considered loosely equal)
+```
+
+
+
+🔒 `===` (Strict Equality Operator)
+
+- No type conversion: It compares both value and type.
+- Known as strict equality.
+
+#### 🔸 Code Example:
+
+```javascript
+5 === '5'     // false (number !== string)
+0 === false   // false (different types)
+null === undefined  // false (different types)
+5 === 5       // true
+```
+
+#### ✅ Summary Table : `==` vs `===`
+
+| Expression               | `==` Result | `===` Result | Explanation                                |
+|--------------------------|-------------|--------------|--------------------------------------------|
+| `5 == '5'`               | `true`      | `false`      | Loose equality coerces `'5'` to number `5` |
+| `0 == false`             | `true`      | `false`      | `false` becomes `0` in loose comparison    |
+| `null == undefined`      | `true`      | `false`      | Loosely equal but not strictly             |
+| `1 == true`              | `true`      | `false`      | `true` becomes `1` with `==`               |
+| `[] == false`            | `true`      | `false`      | Array coerces to empty string, then 0      |
+| `10 == 10`               | `true`      | `true`       | Same value and type                        |
+| `'hello' == 'hello'`     | `true`      | `true`       | Same string                                |
+| `NaN == NaN`             | `false`     | `false`      | NaN is never equal to itself               |
+
+
+
+#### 🔸 Code Example:
+
+```javascript
+console.log('== vs === in JavaScript');
+
+// Example 1: Number vs String
+let a = 5;
+let b = '5';
+
+console.log(a == b);   // true (type coercion)
+console.log(a === b);  // false (strict type check)
+
+// Example 2: Boolean vs Number
+console.log(0 == false);   // true
+console.log(0 === false);  // false
+
+console.log(1 == true);    // true
+console.log(1 === true);   // false
+
+// Example 3: null vs undefined
+console.log(null == undefined);   // true
+console.log(null === undefined);  // false
+
+// Example 4: Object and primitive
+console.log([] == false);         // true (array coerced to '')
+console.log([] === false);        // false
+
+// Example 5: Identical values and types
+console.log(10 == 10);    // true
+console.log(10 === 10);   // true
+```
+
+✅ Output Explanation (in console)
+
+```bash
+true   // 5 == '5' → '5' is coerced to number
+false  // 5 === '5' → different types
+true   // 0 == false → coerced
+false  // 0 === false → number !== boolean
+true   // null == undefined
+false  // null !== undefined
+true   // [] == false → coerced to ''
+false  // [] === false
+true   // 10 == 10
+true   // 10 === 10
+```
+
+---
+---
+---
+
+## 🔹 What are template literals, and how do you use them in JavaScript?
+
+# 📘 JavaScript Template Literals
+
+Template literals are a powerful feature in JavaScript (introduced in ES6) that make string manipulation easier and more readable.
+
+
+Template literals (also called template strings) are string literals that allow embedded expressions. You define them using **backticks (`)** instead of single `'` or double `"` quotes.
+
+#### ✅ Features
+
+- Multi-line strings
+- Variable and expression interpolation
+- Expression evaluation
+- Tagged templates (advanced)
+
+#### 1. Syntax Example
+
+```javascript
+const name = "Alice";
+const message = `Hello, ${name}!`;
+console.log(message);  // Output: Hello, Alice!
+```
+
+#### 2. Multi-line Strings
+
+You don't need `\n` or concatenation :
+
+```javascript
+const multiLine = `This is
+a multi-line
+string.`;
+console.log(multiLine);
+```
+
+#### 3. Expression Interpolation
+
+You can directly evaluate expressions inside `${}` :
+
+```javascript
+const a = 5;
+const b = 10;
+console.log(`The sum is ${a + b}`); // Output: The sum is 15
+```
+
+#### 4. Tagged Template Literals (Advanced)
+
+You can define a function to process a template string :
+
+```javascript
+function highlight(strings, ...values) {
+  return strings.reduce((result, str, i) =>
+    `${result}${str}<b>${values[i] || ''}</b>`, '');
+}
+
+const name = "Bob";
+const age = 30;
+const result = highlight`Name: ${name}, Age: ${age}`;
+console.log(result);
+// Output: Name: <b>Bob</b>, Age: <b>30</b>
+```
+
+#### 🆚 Traditional vs Template Literals
+
+| Feature              | Traditional String            | Template Literal                |
+|----------------------|-------------------------------|----------------------------------|
+| Variable Insertion   | `"Hello " + name`             | ``Hello ${name}``                |
+| Multi-line Strings   | `"Line1\nLine2"`              | ``Line1<br>Line2``               |
+| Expression Evaluation| `"Total: " + (a + b)`         | ``Total: ${a + b}``              |
+| Complex Templates    | Harder to read                | Cleaner and more readable        |
+
+
+---
+---
+---
+
+## 🔹 What is an array in JavaScript?Explain all the methods of arrays in JavaScript.
+
+In JavaScript, an array is a data structure used to store multiple values in a single variable. Arrays are ordered, zero-indexed, and can contain mixed data types (numbers, strings, objects, functions, etc.).
+
+```javascript
+let fruits = ["apple", "banana", "cherry"];
+console.log(fruits[0]); // Output: apple
+```
+
+#### 1. Creation & Access
+
+| Method/Usage   | Description                     |
+|----------------|---------------------------------|
+| `[]`           | Literal syntax to create array  |
+| `Array()`      | Constructor to create array     |
+| `array[index]` | Access element by zero-based index |
+
+```javascript
+const nums = [1, 2, 3];
+console.log(nums[1]);        // 2
+
+const moreNums = Array(4, 5, 6);
+console.log(moreNums[0]);    // 4
+```
+
+#### 2. Adding/Removing Elements
+
+| Method              | Description            | Example                |
+|----------------------|-------------------------------|----------------------------------|
+| `push()`   | Adds to the end             | `arr.push(4)`                |
+| `pop()`   | Removes from the end             | `arr.pop()`               |
+| `unshift()`| Removes from the beginning         |`arr.unshift(0)`              |
+| `shift()`    | Removes from the beginning                | `arr.shift() `      |
+| `splice()`    | Adds/removes from any position                | `arr.splice(1, 0, "x")`        |
+| `slice()`    | Returns a portion (shallow copy)                | `arr.slice(1, 3)`        |
 
