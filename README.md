@@ -681,3 +681,127 @@ console.log(moreNums[0]);    // 4
 | `splice()`    | Adds/removes from any position                | `arr.splice(1, 0, "x")`        |
 | `slice()`    | Returns a portion (shallow copy)                | `arr.slice(1, 3)`        |
 
+
+```javascript
+let arr = [1, 2, 3];
+arr.push(4);          // [1, 2, 3, 4]
+arr.shift();          // [2, 3, 4]
+arr.splice(1, 1, 'x'); // [2, 'x', 4]
+console.log(arr.slice(0, 2)); // [2, 'x']
+```
+
+#### 3. Iteration Methods
+
+| Method   | Description                     |
+|----------------|---------------------------------|
+| `forEach()` | Execute callback for each item |
+| `map() `           | Return new array of transformed values  |
+| `filter()`      | Return items that meet a condition     |
+| `reduce()` | Accumulate to single return value |
+| `some()` | true if at least one item matches |
+| `every()` | true if all items match |
+
+```javascript
+const numbers = [1, 2, 3, 4];
+
+numbers.forEach(n => console.log(n));
+
+const doubled = numbers.map(n => n * 2);      // [2, 4, 6, 8]
+const evens   = numbers.filter(n => n % 2 === 0); // [2, 4]
+const total   = numbers.reduce((a, n) => a + n, 0); // 10
+const hasOdd  = numbers.some(n => n % 2);     // true
+const allOdd  = numbers.every(n => n % 2);    // false
+```
+
+#### 4. Searching and Indexing
+
+| Method   | Description                     |
+|----------------|---------------------------------|
+| `includes()` | Checks if an item is in the array |
+| `indexOf()` | Returns index of first occurrence |
+| `lastIndexOf()` | Returns index of last occurrence |
+| `find()` | Returns first match |
+| `findIndex()` | Returns index of first match |
+
+
+```javascript
+const colors = ['red', 'green', 'blue', 'green'];
+
+console.log(colors.indexOf('green'));      // 1
+console.log(colors.lastIndexOf('green'));  // 3
+console.log(colors.includes('blue'));      // true
+
+const longColor = colors.find(c => c.length > 4); // 'green'
+const longIndex = colors.findIndex(c => c.length > 4); // 1
+```
+
+#### 5. Sorting and Reversing
+
+| Method   | Description                     |
+|----------------|---------------------------------|
+| `sort()` | Sorts array in place |
+| `reverse()` | Reverses array in place |
+| `splice()` | Remove and/or add elements |
+
+```javascript
+const letters = ['c', 'a', 'b'];
+letters.sort();     // ['a', 'b', 'c']
+letters.reverse();  // ['c', 'b', 'a']
+
+const nums = [10, 2, 5];
+nums.sort((a, b) => a - b); // [2, 5, 10]
+```
+
+#### 6. Converting Data Types
+
+| Method   | Description                     |
+|----------------|---------------------------------|
+| `toString()` | Converts to string |
+| `valueOf()` | Returns primitive value |
+| `Number()` | Converts to number |
+| `String()` | Converts to string |
+| `Boolean()` | Converts to boolean |
+| `join()` | 	Concatenate items into string |
+| `flat()` | Flatten nested arrays (depth param) |
+| `concat()` | Return new array merging given arrays |
+| `isArray()` | Static method to test for array |
+
+```javascript
+const num = 42;
+console.log(num.toString());  // '42'
+console.log(num.valueOf());   // 42
+const words = ['hello', 'world'];
+console.log(words.join(' '));        // 'hello world'
+console.log(words.toString());       // 'hello,world'
+
+const nested = [1, [2, [3]]];
+console.log(nested.flat(2));         // [1, 2, 3]
+
+console.log(Array.isArray(nested));  // true
+
+const merged = [1, 2].concat([3, 4]); // [1, 2, 3, 4]
+const str = 'hello';
+console.log(str.split(''));         // ['h', 'e', 'l', 'l', 'o']
+```
+
+#### 7. Date and Time
+| Method   | Description                     |
+|----------------|---------------------------------|
+| `Date()` | Creates a new Date object |
+| `getFullYear()` | Returns year |
+
+
+#### 8. Filling and Copying
+
+| Method   | Description                     |
+|----------------|---------------------------------|
+| `fill()` | Overwrite all / part of array with static value |
+| `copyWithin()` | Copy part of array to another location in same array |
+
+```javascript
+const filled = new Array(3).fill(0);    // [0, 0, 0]
+
+const seq = [1, 2, 3, 4];
+seq.copyWithin(0, 2);                   // [3, 4, 3, 4]
+```
+
