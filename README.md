@@ -567,7 +567,7 @@ true   // 10 === 10
 
 ## 🔹 What are template literals, and how do you use them in JavaScript?
 
-# 📘 JavaScript Template Literals
+#### 📘 JavaScript Template Literals
 
 Template literals are a powerful feature in JavaScript (introduced in ES6) that make string manipulation easier and more readable.
 
