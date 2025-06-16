@@ -1361,12 +1361,313 @@ const object = array.reduce((acc, [key, value]) => {
   return acc;
 }, {});
 ```  
+---
+---
+---
+
+
+## 🔹What are conditional statements in JavaScript, and how do you use them?
+Conditional statements in JavaScript are used to execute different blocks of code based on certain conditions. They allow you to make decisions in your programs. The most common conditional statements are `if`, `else`, `if-else`, and `switch`.
+
+#### 📋 JavaScript Conditional Statements
+
+| Statement              | Syntax Example                                        | Description                                    |
+|------------------------|------------------------------------------------------|------------------------------------------------|
+| `if`                   | `if (a > b) { ... }`                                  | Executes code block if condition is `true`     |
+| `if...else`            | `if (a > b) { ... } else { ... }`                    | Executes one of two blocks                     |
+| `if...else if...else`  | `if (a > b) { ... } else if (...) { ... } else {}`   | Handles multiple conditions                    |
+| `switch`               | `switch(x) { case 'a': ... break; default: ... }`    | Matches value to multiple cases                |
+| Ternary (`? :`)        | `let result = a > b ? "yes" : "no";`                 | Short `if...else` for simple expressions       |
+| Logical `&&`, `||`, `!`| `if (a && b) { ... }`                                | Combines or inverts conditions                 |
+| `??` Nullish Coalescing| `let name = user.name ?? "Guest";`                  | Uses fallback if `null` or `undefined`         |
+| `?.` Optional Chaining | `let city = user?.address?.city;`                   | Safely access deeply nested properties         |
 
 
 
+#### ✅ 1. `if` Statement
+
+Executes a block of code if the condition is true.
+
+```javascript
+let x = 10;
+if (x > 5) {
+  console.log("x is greater than 5");
+}
+```
+
+#### ✅ 2. `if...else` Statement
+Executes one block of code if the condition is true, and another if it's false.
+
+```javascript
+if (score >= 60) {
+  console.log("Passed");
+} else {
+  console.log("Failed");
+}
+```
+
+#### ✅ 3. `if...else if...else` Statement
+Executes one of several blocks of code based on multiple conditions.
+
+```javascript
+if (score >= 90) {
+  console.log("Grade A");
+} else if (score >= 75) {
+  console.log("Grade B");
+} else if (score >= 60) {
+  console.log("Grade C");
+} else {
+  console.log("Fail");
+}
+
+```
+#### ✅ 4. `switch` Statement
+Executes different blocks of code based on the value of an expression.
+
+```javascript
+const color = "green";
+
+switch (color) {
+  case "red":
+    console.log("Stop");
+    break;
+  case "green":
+    console.log("Go");
+    break;
+  case "yellow":
+    console.log("Wait");
+    break;
+  default:
+    console.log("Unknown color");
+}
+```
+#### ⚠️ Always use break to prevent fall-through (unless intentional).
+
+#### ✅ 5. Ternary Operator (`? :`)
+A shorthand for an `if...else` statement.
+
+```javascript
+const isAdult = age >= 18 ? true : false;
+console.log(isAdult);
+```
+
+#### ✅ 6. Logical Operators in Conditions
+
+You can combine multiple conditions using logical operators:
+
+- `&&` (AND)
+
+- `||` (OR)
+
+- `!` (NOT)
+
+```javascript
+if (age > 18 && hasLicense) {
+  console.log("You can drive.");
+}
+
+if (age < 13 || isWithAdult) {
+  console.log("You can enter.");
+}
+
+if (!isVerified) {
+  console.log("Access denied.");
+}
+```
+
+#### ✅ 7. Optional: Nullish Coalescing (`??`) & Optional Chaining (`?.`)
+
+Not conditional statements, but often used in conditional logic.
+
+```javascript
+const name = user.name ?? "Guest";   // If user.name is null or undefined
+const city = user?.address?.city;    // Avoid errors if nested property missing
+```
+
+---
+---
+---
+
+## 🔹What a loop in JavaScript is and how to use it?
+
+#### 🔁 JavaScript Loops
+
+Loops are used to repeat a block of code as long as a condition is true.
+
+#### 1 . `for` Loop
+
+Used when the number of iterations is known.
+
+```javascript
+for (let i = 0; i < 5; i++) {
+  console.log(i);
+}
+```
+
+#### 🔹 Initializes `i = 0`, loops while `i < 5`, and increments `i` after each loop.
+
+#### 2 . `while` Loop
+
+Used when the number of iterations is not known.
+
+```javascript
+let i = 0;
+while (i < 5) {
+  console.log(i);
+  i++;
+}
+```
+#### 🔹 Checks the condition before executing the block.
 
 
+#### 3 . `do...while` Loop
+
+Similar to `while`, but the block runs at least once before the condition is checked.
+
+```javascript
+let i = 0;
+do {
+  console.log(i);
+  i++;
+} while (i < 5);
+```
+
+#### 🔹 Executes the block at least once, then checks the condition.
+
+#### 4 . `for...in` Loop
+
+Used to iterate over the properties of an object.
+
+```javascript
+const obj = { a: 1, b: 2, c: 3 };
+for (const key in obj) {
+  console.log(key, obj[key]);
+}
+```
+
+#### 🔸 Used for objects, not arrays (unless you want to iterate over custom properties).
 
 
+#### 5 . `for...of` Loop
 
+Used to iterate over the elements of an iterable object (arrays, strings, maps, sets, etc.).
+
+```javascript
+const arr = [1, 2, 3];
+for (const value of arr) {
+  console.log(value);
+}
+```
+#### 🔸 Used for values, not keys.
+
+#### 6 . `Array.forEach()` Method
+
+Loops through an array without breaking or returning.
+
+```javascript
+const arr = [1, 2, 3];
+arr.forEach((value) => {
+  console.log(value);
+});
+```
+
+#### 🔸 Cannot use break or return to exit early.
+
+
+#### 🛑 Breaking and Continuing in Loops
+
+#### `break` – exits the loop completely :
+
+```javascript
+for (let i = 0; i < 10; i++) {
+  if (i === 5) {
+    break;
+  }
+  console.log(i);
+}
+```
+
+#### `continue` – skips to the next iteration :
+
+```javascript
+for (let i = 0; i < 10; i++) {
+  if (i % 2 === 0) {
+    continue;
+  }
+  console.log(i);
+}
+```
+
+#### 🔁 Summary of JavaScript Loops
+
+| Loop Type     | Syntax Example                          | Can Break/Continue | Best For                       | Notes                                    |
+|---------------|------------------------------------------|---------------------|--------------------------------|------------------------------------------|
+| `for`         | `for (let i = 0; i < 5; i++) {}`         | ✅ Yes              | Indexed arrays                 | Use when iteration count is known        |
+| `while`       | `while (i < 5) {}`                       | ✅ Yes              | Condition-based loops          | Checks condition before every iteration  |
+| `do...while`  | `do { ... } while (i < 5);`              | ✅ Yes              | Run at least once              | Executes block before checking condition |
+| `for...in`    | `for (let key in obj) {}`               | ✅ Yes              | Objects                        | Iterates over keys (not values)          |
+| `for...of`    | `for (let value of iterable) {}`        | ✅ Yes              | Arrays, strings, iterables     | Iterates over values                     |
+| `.forEach()`  | `arr.forEach((val) => {})`              | ❌ No               | Simple array iteration         | Can't break/return early                 |
+
+
+#### ❓ `break` and `continue` work in loops
+
+- `break` exits the loop **immediately**.
+- `continue` skips the **current iteration** and proceeds to the next.
+
+```javascript
+for (let i = 0; i < 5; i++) {
+  if (i === 3) break;      // Stops the loop
+  if (i === 1) continue;   // Skips number 1
+  console.log(i);
+}
+// Output: 0, 2
+```
+
+#### ❓ Difference between a `while` loop and a `do...while` loop
+
+| Feature              | `while` loop Example                                        | `do...while` loop                                    |
+|------------------------|------------------------------------------------------|------------------------------------------------|
+| Condition Check                   | Before executing the loop body                                  | After executing the loop body     |
+| Minium Runs            | May run zero times                    | Always runs at least once                     |
+
+```javascript
+// while
+let a = 5;
+while (a < 5) {
+  console.log("Never runs");
+}
+
+// do...while
+let b = 5;
+do {
+  console.log("Runs once");
+} while (b < 5);
+// Output: Runs once
+```
+
+
+#### ❓ Different between q `for` loop and a `forEach()` loop
+
+
+| Feature              | `for` loop Example                                        | `forEach()` loop                                    |
+|------------------------|------------------------------------------------------|------------------------------------------------|
+| Type                   | Keyword-based loop                                  | Array method     |
+| Break/Continue            | 	✅ Supported                    | ❌ Not supported                     |
+| Flexibility  | Can loop over any logic   | 	Only loops over array elements                    |
+
+```javascript
+const arr = [1, 2, 3];
+
+// for
+for (let i = 0; i < arr.length; i++) {
+  if (arr[i] === 2) break;
+  console.log(arr[i]);
+}
+
+// forEach
+arr.forEach((num) => {
+  console.log(num); // Can't break early!
+});
+```
 
