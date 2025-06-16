@@ -801,3 +801,572 @@ const seq = [1, 2, 3, 4];
 seq.copyWithin(0, 2);                   // [3, 4, 3, 4]
 ```
 
+---
+---
+---
+
+## 🔹How do you convert a string to a number in JavaScript?
+
+
+#### 📌 Methods to Convert String to Number
+
+#### 1. `Number()` Constructor
+
+Converts the entire string to a number. Returns `NaN` if the string contains invalid characters.
+
+```javascript
+const str = "42";
+const num = Number(str);
+console.log(num); // 42
+```
+
+#### 2. `parseInt()` Function
+Converts the string to an integer. Returns `NaN` if the string contains non-numeric characters.
+
+```javascript
+const str = "42px";
+const num = parseInt(str, 10);
+console.log(num); // 42
+```
+
+#### 3. `parseFloat()` Function
+Converts the string to a floating-point number. Returns `NaN` if the string contains non-numeric characters.
+
+```javascript
+const str = "3.14";
+const num = parseFloat(str);
+console.log(num); // 3.14
+```
+#### 4. Unary Plus (`+`) Operator
+The unary `+` operator can be used to convert a string to a number. It returns `NaN` if the string contains non-numeric characters.
+
+```javascript
+const str = "42";
+const num = +str;
+console.log(num); // 42
+```
+
+#### 5. Implicit Conversion Using Math Functions
+Math functions like `Math.floor()` will implicitly convert the input to a number.
+
+```javascript
+const str = "42.7";
+const num = Math.floor(str);
+console.log(num); // 42
+```
+
+#### ⚠️ Notes
+
+- `Number("abc")` → `NaN`
+
+- `parseInt("42abc")` → `42`
+
+- `parseFloat("42.5abc")` → `42.5`
+
+- `+"42"` → `42`
+
+- `"42" * 1` → `42` (another implicit conversion trick)
+
+#### ✅ Best Practices
+
+- Use `Number()` or `+` when the string must be strictly numeric.
+
+- Use `parseInt()` or `parseFloat()` when you expect extra characters.
+
+- Always specify the radix (base) in `parseInt()`: `parseInt(str, 10)`
+
+
+#### 📦 Usage Example
+
+```javascript
+function toNumber(value) {
+  const num = Number(value);
+  return isNaN(num) ? null : num;
+}
+
+console.log(toNumber("123"));    // 123
+console.log(toNumber("12abc"));  // null
+```
+
+---
+---
+---
+
+## 🔹 How does JavaScript handle automatic type conversion when comparing values?
+
+#### 🧠 JavaScript Type Coercion in Comparisons
+
+JavaScript automatically converts types when using the `==` (loose equality) operator. This behavior is called **type coercion** and can sometimes lead to unexpected results.
+
+
+#### ⚖️ Loose vs Strict Equality
+
+#### Loose Equality (`==`)
+- Performs type conversion if needed.
+- Use with caution—can lead to confusing results.
+
+#### Strict Equality (`===`)
+- No type conversion.
+- Compares both **type** and **value**.
+
+
+#### 📋 Type Conversion Rules (Simplified)
+
+When comparing values with `==`, JavaScript follows these basic rules:
+
+- If one operand is a number and the other a string → convert the string to a number.
+
+- If one is `boolean` → convert it to `0` or `1`.
+
+- If one is `object` and the other a primitive → convert the object to a primitive (via `.toString()` or `.valueOf()`).
+
+- `null` and `undefined` are only equal to each other (not to any other value).
+
+
+#### 🔁 Comparison Table with Type Coercion
+
+| Expression           | Result | Explanation                                |
+|----------------------|--------|--------------------------------------------|
+| `"42" == 42`         | `true` | String `"42"` is converted to number `42`  |
+| `false == 0`         | `true` | `false` becomes `0`                         |
+| `null == undefined`  | `true` | Special rule in JavaScript                 |
+| `"0" == false`       | `true` | Both become number `0`                     |
+| `[] == ""`           | `true` | Empty array converts to empty string       |
+| `[] == 0`            | `true` | `[]` → `""`, then `""` → `0`               |
+| `[1] == 1`           | `true` | `[1]` becomes string `"1"` then number     |
+| `{} == "[object Object]"` | `false` | Object is not coerced to a string in this context |
+| `null == 0`          | `false`| `null` only equals `undefined`             |
+| `undefined == 0`     | `false`| No coercion rule between these             |
+| `"" == false`        | `true` | `""` becomes `0`, `false` becomes `0`      |
+
+---
+
+#### ✅ Best Practices
+
+- Always prefer **strict equality (`===`)** to avoid unexpected type coercion.
+- Use **type-safe comparisons** in conditionals, function logic, and validations.
+- If you must use `==`, understand the coercion rules.
+
+---
+
+## 🧪 Example Code
+
+```javascript
+console.log("42" == 42);        // true
+console.log(false == 0);        // true
+console.log(null == undefined); // true
+console.log([] == 0);           // true
+console.log([1] == "1");        // true
+console.log({} == "[object Object]"); // false
+```
+
+---
+---
+---
+
+## 🔹What is the difference between Array.forEach() and Array.map()?
+
+#### 🔄 JavaScript : `Array.forEach()` vs `Array.map()`
+
+Understanding the difference between `forEach()` and `map()` is essential for writing clean and effective JavaScript code. Both are used to iterate over arrays, but they serve different purposes.
+
+
+#### 📌 Key Differences
+
+| Feature               | `forEach()`                          | `map()`                                |
+|-----------------------|---------------------------------------|-----------------------------------------|
+| **Purpose**           | To execute a function on each item               | To create a new array with transformed values |
+| **Returns**           | `undefined`                          | 	New array with transformed elements                             |
+| **Mutates original?** | No (but can modify manually)         | No                                      |
+| **Chainable?**        | ❌ Not chainable                      | ✅ Chainable (returns an array)                             |
+| **Use case**          | Logging, updating DOM, side effects  | Data transformation                     |
+
+
+#### 🧪 Example Usage
+
+#### ✅ `forEach()`: Perform an action for each element
+
+```javascript
+const numbers = [1, 2, 3];
+
+numbers.forEach(num => {
+  console.log(num * 2); // Logs: 2, 4, 6
+});
+
+console.log(numbers); // [1, 2, 3]
+```
+
+#### ✅ `map()`: Create a new array with transformed elements
+```javascript
+const numbers = [1, 2, 3];
+const doubledNumbers = numbers.map(num => num * 2);
+console.log(doubledNumbers); // [2, 4, 6]
+console.log(numbers); // [1, 2, 3]
+```
+
+#### ✅ Summary
+
+- Use `forEach()` when you’re doing side effects (e.g., logging, updating DOM, calling APIs).
+
+- Use `map()` when you want to create a new array based on the original.
+
+
+---
+---
+---
+
+
+## 🔹What is an Object in JavaScript? How is it different from an array? Explain all methods of Object in javaScript?
+
+An **object** in JavaScript is a collection of properties, where each property is a **key-value pair**. It can be used to store data in a structured way, and it can have methods, which are functions that are associated with the object.
+
+```javascript
+const person = {
+  name: "John",
+  age: 30,
+  address: {
+    street: "123 Main St",
+    city: "New York",
+    state: "NY",
+    zip: 10001
+  },
+  sayHello: function() {
+    console.log("Hello, my name is " + this.name);
+  }
+};
+console.log(person.name); // "John"
+console.log(person.address.city); // "New York"
+person.sayHello(); // "Hello, my name is John"
+```
+
+- Keys are strings (or Symbols).
+
+- Values can be any type: string, number, boolean, array, object, function, etc.
+
+#### 🔄 How is an Object different from an Array?
+
+| Feature               | Object                          | Array                                |
+|-----------------------|---------------------------------------|-----------------------------------------|
+| **Structure**           | Key-value pairs               | Indexed collection of values |
+| **Access**           | By key (`obj.key`)                          | 	By index (`arr[0]`)                             |
+| **Order** | Unordered (in general)         | Ordered (in general)                               |                                      |
+| **Use Case**        | Storing related data as named fields                      | Storing lists, sequences                             |
+| **Syntax**          | `{ key: value }`  | `[value1, value2]`                     |
+
+#### 📚 Methods of Object in JavaScript
+
+#### 🔍 Object.keys(obj)
+Returns an array of the object's own property names.
+```javascript
+const person = {
+  name: "John",
+  age: 30,
+  address: {
+    street: "123 Main St",
+    city: "New York",
+    state: "NY",
+    zip: 10001
+  }
+};
+console.log(Object.keys(person)); // ["name", "age", "address"]
+```
+
+#### 🔍 Object.values(obj)
+Returns an array of the object's own property values.
+
+```javascript
+const person = {
+  name: "John",
+  age: 30,
+  address: {
+    street: "123 Main St",
+    city: "New York",
+    state: "NY",
+    zip: 10001
+  }
+};
+console.log(Object.values(person)); // ["John", 30, {…}]
+```
+
+#### 🔍 Object.entries(obj)
+Returns an array of the object's own key-value pairs.
+
+```javascript
+const person = {
+  name: "John",
+  age: 30,
+  address: {
+    street: "123 Main St",
+    city: "New York",
+    state: "NY",
+    zip: 10001
+  }
+};
+console.log(Object.entries(person)); // [["name", "John"], ["age", 30], ["address", {…}]]
+```
+
+#### 🔁 Object.assign(target, ...sources)
+Copies all enumerable own properties from one or more source objects to a target object.
+
+```javascript
+const target = {};
+const source1 = { a: 1, b: 2 };
+const source2 = { c: 3, d: 4 };
+Object.assign(target, source1, source2);
+console.log(target); // {a: 1, b: 2, c: 3, d: 4}
+```
+
+#### 🔐 Object.freeze(obj)
+Freezes an object, preventing any changes to its properties.
+
+```javascript
+const person = {
+  name: "John",
+  age: 30,
+  address: {
+    street: "123 Main St",
+    city: "New York",
+    state: "NY",
+    zip: 10001
+  }
+};
+Object.freeze(person);
+person.name = "Jane"; // No error, but the property is not writable
+console.log(person.name); // "John"
+```
+
+#### 🔒 Object.seal(obj)
+Seals an object, preventing any changes to its properties.
+
+```javascript
+const person = {
+  name: "John",
+  age: 30,
+  address: {
+    street: "123 Main St",
+    city: "New York",
+    state: "NY",
+    zip: 10001
+  }
+};
+Object.seal(person);
+person.name = "Jane"; // No error, but the property is not writable
+console.log(person.name); // "John"
+```
+
+#### ❌ Object.is(a, b)
+Determines if two values are the same primitive value.
+
+```javascript
+console.log(Object.is(5, 5)); // true
+console.log(Object.is("foo", "foo")); // true
+console.log(Object.is({}, {})); // false
+```
+
+#### 🔧 Object.defineProperty(obj, key, descriptor)
+Defines a new property directly on an object and returns the object.
+
+```javascript
+const person = {};
+Object.defineProperty(person, "name", {
+  value: "John",
+  writable: true,
+  enumerable: true,
+  configurable: true
+});
+person.name = "Jane"; // No error, but the property is not writable
+console.log(person.name); // "John"
+```
+
+#### 🔍 Object.hasOwn(obj, key) (ES2022+)
+Checks if an object has a specified own property.
+
+```javascript
+const person = {
+  name: "John",
+  age: 30,
+  address: {
+    street: "123 Main St",
+    city: "New York",
+    state: "NY",
+    zip: 10001
+  }
+};
+console.log(Object.hasOwn(person, "name")); // true
+console.log(Object.hasOwn(person, "address")); // true
+console.log(Object.hasOwn(person, "gender")); // false
+```
+
+
+#### 🧱 Object.create(proto)
+Creates a new object with the specified prototype object and properties.
+
+```javascript
+const person = Object.create(null);
+person.name = "John";
+person.age = 30;
+console.log(person); // {name: "John", age: 30}
+```
+
+
+
+
+
+
+
+#### 🔍 Object.getOwnPropertyDescriptors(obj)
+Returns an object containing all own property descriptors of a given object.
+
+```javascript
+const person = {
+  name: "John",
+  age: 30,
+  address: {
+    street: "123 Main St",
+    city: "New York",
+    state: "NY",
+    zip: 10001
+  }
+};
+console.log(Object.getOwnPropertyDescriptors(person)); // {name: {…}, age: {…}, address: {…}}
+```
+
+#### 🔍 Object.getOwnPropertyNames(obj)
+Returns an array of a given object's own enumerable property names.
+
+```javascript
+const person = {
+  name: "John",
+  age: 30,
+  address: {
+    street: "123 Main St",
+    city: "New York",
+    state: "NY",
+    zip: 10001
+  }
+};
+console.log(Object.getOwnPropertyNames(person)); // ["name", "age", "address"]
+```
+#### 🔍 Object.getPrototypeOf(obj)
+Returns the prototype of an object.
+
+```javascript
+const person = {
+  name: "John",
+  age: 30,
+  address: {
+    street: "123 Main St",
+    city: "New York",
+    state: "NY",
+    zip: 10001
+  }
+};
+console.log(Object.getPrototypeOf(person)); // {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, __lookupSetter__: ƒ, isPrototypeOf: ƒ, …}
+```
+
+
+#### 🔁 iterate over an object’s properties
+
+#### 1. `for...in` loop :
+
+```javascript
+for (let key in person) {
+  console.log(`${key}: ${person[key]}`);
+}
+```
+
+#### 2. `Object.keys()` + `forEach()`:
+
+```javascript
+Object.keys(person).forEach(key => {
+  console.log(`${key}: ${person[key]}`);
+});
+```
+
+#### 3. `Object.entries()`:
+
+```javascript
+Object.entries(person).forEach(([key, value]) => {
+  console.log(`${key}: ${value}`);
+});
+```
+
+#### 🧱 Add a new property to an object
+
+```javascript
+person.email = "john@example.com";
+```
+
+#### 📥 Difference between Object.assign() and spread syntax
+
+Both are used for shallow copying and merging, but with different syntax.
+
+`Object.assign()`:
+
+```javascript
+const newPerson = Object.assign({}, person, { email: "john@example.com" });
+```
+
+Spread syntax :
+
+```javascript
+const newPerson = { ...person, email: "john@example.com" };
+```
+
+#### 🌊  A shallow copy of an object
+
+A shallow copy copies only the first level of properties. If properties are objects or arrays, they are still referenced, not cloned.
+
+```javascript
+const original = { name: "Alice", scores: [90, 80] };
+const shallowCopy = { ...original };
+
+shallowCopy.scores.push(100);
+console.log(original.scores); // [90, 80, 100] ⚠️ affected!
+```
+
+#### 🔗  Merge two objects in JavaScript
+
+Using spread :
+
+```javascript
+const person = { name: "John", age: 30 };
+const address = { city: "New York", country: "USA" };
+const merged = { ...person, ...address };
+```
+
+Using `Object.assign()`:
+
+```javascript
+const person = { name: "John", age: 30 };
+const address = { city: "New York", country: "USA" };
+const merged = Object.assign({}, person, address);
+```
+
+#### 🔄  Convert an array into an object
+
+1. Use `Object.fromEntries()`:
+
+```javascript
+const array = [["name", "John"], ["age", 30]];
+const object = Object.fromEntries(array);
+```
+
+2. Use `reduce()`:
+
+```javascript
+const array = [["name", "John"], ["age", 30]];
+const object = array.reduce((acc, [key, value]) => {
+  acc[key] = value;
+  return acc;
+}, {});
+```  
+
+
+
+
+
+
+
+
+
