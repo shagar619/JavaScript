@@ -641,7 +641,7 @@ console.log(result);
 ---
 ---
 
-## 🔹 What is an array in JavaScript?Explain all the methods of arrays in JavaScript.
+## 🔹 What is an array in JavaScript? Explain all the methods of arrays in JavaScript.
 
 In JavaScript, an array is a data structure used to store multiple values in a single variable. Arrays are ordered, zero-indexed, and can contain mixed data types (numbers, strings, objects, functions, etc.).
 
