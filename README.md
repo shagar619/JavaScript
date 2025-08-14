@@ -271,9 +271,7 @@ console.log(person.name); // "Bob"
 - `let` is block-scoped, hoisted but uninitialized, and allows reassignment.
 - `const` is block-scoped, hoisted and initialized, and cannot be reassigned or mutated.
 
----
----
----
+
 
 ## 🔹What are the differences between null and undefined? 
 
@@ -348,9 +346,6 @@ console.log(person.name); // null
 | Missing object property   | `undefined`        |
 | Empty value on purpose    | `null`             |
 
----
----
----
 
 ## 🔹Explain all JavaScript operators and their purpose of use?
 
@@ -464,9 +459,6 @@ let display = username ?? 'Guest';
 console.log(display); // Guest
 ```
 
----
----
----
 
 ## 🔹 What is the difference between `==` and `===` in JavaScript?
 
@@ -561,9 +553,6 @@ true   // 10 == 10
 true   // 10 === 10
 ```
 
----
----
----
 
 ## 🔹 What are template literals, and how do you use them in JavaScript?
 
@@ -636,10 +625,6 @@ console.log(result);
 | Expression Evaluation| `"Total: " + (a + b)`         | ``Total: ${a + b}``              |
 | Complex Templates    | Harder to read                | Cleaner and more readable        |
 
-
----
----
----
 
 ## 🔹 What is an array in JavaScript? Explain all the methods of arrays in JavaScript.
 
@@ -801,9 +786,6 @@ const seq = [1, 2, 3, 4];
 seq.copyWithin(0, 2);                   // [3, 4, 3, 4]
 ```
 
----
----
----
 
 ## 🔹How do you convert a string to a number in JavaScript?
 
@@ -888,9 +870,6 @@ console.log(toNumber("123"));    // 123
 console.log(toNumber("12abc"));  // null
 ```
 
----
----
----
 
 ## 🔹 How does JavaScript handle automatic type conversion when comparing values?
 
@@ -939,7 +918,6 @@ When comparing values with `==`, JavaScript follows these basic rules:
 | `undefined == 0`     | `false`| No coercion rule between these             |
 | `"" == false`        | `true` | `""` becomes `0`, `false` becomes `0`      |
 
----
 
 #### ✅ Best Practices
 
@@ -947,9 +925,8 @@ When comparing values with `==`, JavaScript follows these basic rules:
 - Use **type-safe comparisons** in conditionals, function logic, and validations.
 - If you must use `==`, understand the coercion rules.
 
----
 
-## 🧪 Example Code
+#### 🧪 Example Code
 
 ```javascript
 console.log("42" == 42);        // true
@@ -960,11 +937,8 @@ console.log([1] == "1");        // true
 console.log({} == "[object Object]"); // false
 ```
 
----
----
----
 
-## 🔹What is the difference between Array.forEach() and Array.map()?
+## 🔹What is the difference between `Array.forEach()` and `Array.map()`?
 
 #### 🔄 JavaScript : `Array.forEach()` vs `Array.map()`
 
@@ -1011,9 +985,6 @@ console.log(numbers); // [1, 2, 3]
 - Use `map()` when you want to create a new array based on the original.
 
 
----
----
----
 
 
 ## 🔹What is an Object in JavaScript? How is it different from an array? Explain all methods of Object in javaScript?
@@ -1361,9 +1332,6 @@ const object = array.reduce((acc, [key, value]) => {
   return acc;
 }, {});
 ```  
----
----
----
 
 
 ## 🔹What are conditional statements in JavaScript, and how do you use them?
@@ -1484,9 +1452,6 @@ const name = user.name ?? "Guest";   // If user.name is null or undefined
 const city = user?.address?.city;    // Avoid errors if nested property missing
 ```
 
----
----
----
 
 ## 🔹What a loop in JavaScript is and how to use it?
 
@@ -1670,4 +1635,27 @@ arr.forEach((num) => {
   console.log(num); // Can't break early!
 });
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+#### ❓What would be the result of 3+2+"7"?
+
+```javascript
+console.log(3 + 2 + "7"); // Output: 57
+```
+
+- `3 + 2` is evaluated first, and since both are numbers, it results in `5`.
+- Then, `5 + "7"` is calculated. Since one of the operands is a string ("7"), JavaScript converts the number `5` to a string and concatenates it with `"7"`, resulting in `"57"`.
+
+
+#### ❓What is the difference between JavaScript and TypeScript?
 
