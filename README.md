@@ -1,7 +1,7 @@
 <!-- markdownlint-disable MD012 MD026 MD001 MD022 MD032 MD029 MD019 MD034 MD031 MD047 MD040 MD009 MD058 MD024 MD038 MD010 MD056 MD033  -->
 
 
-<h1 align="center">Javascript</h1>
+<h1 style="color:green; font-size:70px;" align="center">Javascript</h1>
 
 ## 🔹 What is JavaScript, and how does it differ from other programming languages like Java?
 
@@ -53,9 +53,6 @@ JavaScript is ideal for:
 - Progressive Web Apps (PWAs)
 - Real-time applications (chats, games)
 
----
----
----
 
 
 
@@ -142,9 +139,6 @@ console.log(typeof function(){}); // "function"
 
 - Always be aware of how data is stored and manipulated—by value vs by reference.
 
----
----
----
 
 ## 🔹What is the difference between var, let, and const in JavaScript?
 
