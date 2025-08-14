@@ -1,7 +1,10 @@
-<!-- markdownlint-disable MD012 MD026 MD001 MD022 MD032 MD029 MD019 MD034 MD031 MD047 MD040 MD009 MD058 MD024 MD038 MD010 MD056 MD033  -->
+<!-- markdownlint-disable MD012 MD026 MD001 MD022 MD032 MD029 MD019 MD034 MD031 MD047 MD040 MD009 MD058 MD024 MD038 MD010 MD056 MD033 MD041 MD045  -->
 
+<div>
 
-<h1 style="color:green; font-size:120px;" align="center">JAVASCRIPT</h1>
+ <img src="https://i.ibb.co.com/B5GmYHrV/Unofficial-Java-Script-logo-2-svg.png" style="width:100%; height:auto;">
+
+</div>
 
 ## 🔹 What is JavaScript, and how does it differ from other programming languages like Java?
 
