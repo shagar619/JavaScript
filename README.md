@@ -1,4 +1,7 @@
-# Questions about JavaScript
+<!-- markdownlint-disable MD012 MD026 MD001 MD022 MD032 MD029 MD019 MD034 MD031 MD047 MD040 MD009 MD058 MD024 MD038 MD010 MD056 MD033  -->
+
+
+<h1 align="center">Javascript</h1>
 
 ## 🔹 What is JavaScript, and how does it differ from other programming languages like Java?
 
