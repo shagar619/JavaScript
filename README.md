@@ -1705,4 +1705,15 @@ JavaScript and TypeScript are closely related, but they have some key difference
 
 > If JavaScript is like speaking freely in a conversation, TypeScript is like speaking with a grammar checker and proofreader standing by — you can still say the same things, but you get warned before you make a mistake.
 
-
+Example: TypeScript
+```typescript
+function add(x: number, y: number): number {
+  return x + y;
+}
+```
+Example: JavaScript
+```javascript
+function add(x, y) {
+  return x + y;
+}
+```
