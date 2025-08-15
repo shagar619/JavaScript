@@ -1881,3 +1881,204 @@ console.log(1 / Infinity);    // 0
 ```
 
 - Infinity can also appear in overflow situations where a number exceeds JavaScript’s maximum representable value (Number.MAX_VALUE).
+
+
+## 🔹 What are "truthy" and "falsy" values in JavaScript?
+
+ChatGPT said:
+
+In JavaScript, every value is either truthy or falsy when evaluated in a boolean context (e.g., inside an if statement).
+
+- `Truthy` → values that evaluate to true in a boolean context.
+- `Falsy` → values that evaluate to false in a boolean context.
+
+**Falsy Values (only 8 in JS):**
+
+These are the only values considered falsy:
+```javascript
+false
+0           // the number zero
+-0          // negative zero
+0n          // BigInt zero
+""          // empty string
+null
+undefined
+NaN         // not-a-number
+```
+
+**Truthy Values:**
+
+Everything else is truthy — including:
+
+- Non-empty strings (`"hello"`)
+- Non-zero numbers (`42`, `-1`)
+- Objects (`{}`, `[]`)
+- Functions
+
+Dates, regex, and most other non-null objects
+Example:
+```javascript
+console.log(Boolean(0));    // false
+console.log(Boolean(1));    // true
+console.log(Boolean(""));   // false
+console.log(Boolean("hello")); // true
+console.log(Boolean([]));   // true
+console.log(Boolean({}));   // true
+```
+
+Example: Input Validation
+```javascript
+function processInput(input) {
+  if (!input) {
+    console.error("Invalid input: value is falsy");
+    return;
+  }
+  console.log("Processing:", input);
+}
+
+processInput("");     // Invalid input
+processInput(0);      // Invalid input
+processInput("data"); // Processing: data
+```
+
+## 🔹What are undeclared and undefined variables?
+
+In JavaScript, undeclared and undefined variables sound similar but mean very different things — and confusing them can cause serious bugs.
+
+**1. Undeclared Variables:**
+
+- A variable that has never been declared in the current scope with `var`, `let`, or `const`.
+- Accessing it throws a `ReferenceError`.
+- Usually caused by typos or forgetting `let`/`const`/`var`.
+
+Example:
+```javascript
+console.log(myVariable); // ReferenceError: myVariable is not defined
+```
+
+> If you assign to a variable without declaring it (in non–strict mode), JavaScript implicitly creates a global variable — a dangerous, error-prone behavior.
+
+```javascript
+function test() {
+  accidentalVar = 42; // No let/const/var → becomes global (non-strict mode only)
+}
+test();
+console.log(accidentalVar); // 42 (global!)
+```
+
+In **strict mode**, this throws an error:
+```javascript
+"use strict";
+"use strict";
+accidentalVar = 42; // ❌ ReferenceError
+```
+
+**2. Undefined Variables:**
+
+- A variable that has been declared but not yet assigned a value.
+- Its value is automatically `undefined` until you assign something else.
+
+Example:
+```javascript
+let myVar;
+console.log(myVar); // ✅ undefined
+```
+
+also explicitly set `undefined`:
+```javascript
+let myVar = undefined;
+console.log(myVar); // ✅ undefined
+```
+
+
+#### ❓What will be the result of this expression?
+```javascript
+console.log(null ?? 'default');
+console.log(undefined ?? 'default');
+console.log(false ?? 'default');
+```
+
+**Step-by-step:**
+
+1. `null ?? 'default'`
+
+   - `null` is nullish → returns `'default'`.
+     ✅ Output: `default`
+
+2. `undefined ?? 'default'`
+
+   - `undefined` is nullish → returns `'default'`.
+     ✅ Output: `default`
+
+3. `false ?? 'default'`
+
+   - `false` is not nullish (it’s a valid boolean) → returns `false`.
+   ✅ Output: `false`
+
+Final Output:
+```javascript
+console.log(null ?? 'default'); // ✅ Output: 'default'
+console.log(undefined ?? 'default'); // ✅ Output: 'default'
+console.log(false ?? 'default'); // ✅ Output: false
+```
+
+
+#### ❓What is `null` in JavaScript?
+
+In JavaScript, `null` is a primitive value that represents the intentional absence of any object value.
+
+Think of it as “there’s supposed to be something here, but it’s empty on purpose.”
+
+**Key Points about `null`:**
+
+**Type:**
+```javascript
+typeof null; // "object"  <-- historical bug in JS
+```
+
+> Despite returning `"object"`, `null` is not an object — it’s its own primitive type.
+
+
+- Meaning:
+Indicates a variable should point to nothing (explicitly empty), often used for object placeholders.
+
+- Difference from `undefined`:
+
+  - `undefined` → variable has been declared but not assigned a value (no value yet).
+  - `null` → variable has been assigned no value on purpose.
+
+Examples:
+```javascript
+let user = null; // explicitly no user
+console.log(user); // null
+
+if (user === null) {
+  console.log("No user is currently logged in.");
+}
+```
+
+
+#### ❓What will be the output of this code?
+```javascript
+console.log(0 || "hello"); // "hello"
+console.log("" || "hello"); // "hello"
+console.log(0 || 1); // 1
+console.log("" || 1); // 1
+```
+**Explanation:**
+- `0 || "hello"`: The logical OR operator returns the first truthy value. Since `"hello"` is truthy, it returns `"hello"`.
+- `"" || "hello"`: Similarly, `"hello"` is truthy, so it returns `"hello"`.
+- `0 || 1`: The first operand is falsy (0), so the second operand (1) is returned.
+- `"" || 1`: The first operand is falsy (empty string), so the second operand (1) is returned.
+
+#### ❓What will be the output of this code?
+```javascript
+let x = 0;
+console.log(x++);
+console.log(++x);
+```
+**Explanation:**
+- `x++` first returns the current value of `x` (0) and then increments `x` by 1.
+- `++x` first increments `x` by 1 and then returns the new value (1).
+
+
