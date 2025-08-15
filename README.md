@@ -2260,3 +2260,71 @@ Triggering Submit via Button Click:
 
 
 ## 🔹What is a higher-order function in JavaScript?
+
+A higher-order function in JavaScript is a function that either:
+
+1. Takes another function as an argument (callback), or
+2. Returns a function as its result.
+
+This is possible because in JavaScript, functions are first-class citizens — they can be stored in variables, passed around, and returned just like data.
+
+**Professional Definition:**
+
+A higher-order function abstracts actions, not just values, enabling more reusable, modular, and declarative code.
+
+Example 1 – Takes a Function as an Argument:
+```javascript
+function processArray(arr, callback) {
+  const result = [];
+  for (let item of arr) {
+    result.push(callback(item));
+  }
+  return result;
+}
+
+// Usage: Pass a function to transform items
+const doubled = processArray([1, 2, 3], num => num * 2);
+console.log(doubled); // [2, 4, 6]
+```
+> Here, `processArray` is higher-order because it accepts a function (`callback`) as an argument.
+
+Example 2 – Returns a Function:
+```javascript
+function multiplier(factor) {
+  return function (number) {
+    return number * factor;
+  };
+}
+
+// Usage: Create specialized functions
+const double = multiplier(2);
+console.log(double(5)); // 10
+```
+
+> Here, `multiplier` is higher-order because it returns a new function.
+
+Example 3 – Both Accepts and Returns:
+```javascript
+function compose(f, g) {
+  return function (x) {
+    return f(g(x));
+  };
+}
+
+const addOne = x => x + 1;
+const square = x => x * x;
+
+const addOneThenSquare = compose(square, addOne);
+console.log(addOneThenSquare(4)); // 25
+```
+
+> Here, `compose` is higher-order because it accepts two functions and returns a new function that combines their effects.
+
+**Common Higher-Order Functions in JavaScript:**
+
+- `map()`
+- `filter()`
+- `reduce()`
+- `forEach()`
+- `setTimeout()`
+- `setInterval()`
