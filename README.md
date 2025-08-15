@@ -2082,3 +2082,105 @@ console.log(++x);
 - `++x` first increments `x` by 1 and then returns the new value (1).
 
 
+## 🔹What is the `this` keyword in JavaScript?
+
+In JavaScript, the `this` keyword is a special identifier whose value depends on how a function is called, not where it is defined.
+
+It essentially refers to the "execution context" — the object that is currently invoking the function.
+
+
+Key Rules for `this`:
+| Context                            | Value of `this`                                            |
+| ---------------------------------- | ---------------------------------------------------------- |
+| **Global scope (non-strict)**      | `window` (in browsers) or `global` (Node.js)               |
+| **Global scope (strict mode)**     | `undefined`                                                |
+| **Inside a method**                | The object that owns the method                            |
+| **Inside a function (non-strict)** | `window`/`global`                                          |
+| **Inside a function (strict)**     | `undefined`                                                |
+| **Inside a constructor**           | The new object being created                               |
+| **Inside a class method**          | The instance of the class                                  |
+| **With `call` / `apply` / `bind`** | Explicitly set value                                       |
+| **Inside an arrow function**       | Inherits `this` from the enclosing scope (lexical binding) |
+
+
+**Professional Examples:**
+
+**1. Object Method:**
+```javascript
+let person = {
+  name: "John",
+  greet: function() {
+    console.log(`Hello, my name is ${this.name}.`);
+  }
+};
+person.greet(); // Output: Hello, my name is John.
+```
+> Here, `this` → `user` object.
+
+**2. Constructor Function:**
+```javascript
+function Person(name) {
+  this.name = name;
+}
+
+const p1 = new Person("Bob");
+console.log(p1.name); // Bob
+```
+> Here, `this` → the newly created instance (`p1`).
+
+**3. Using `call`, `apply`, `bind`:**
+```javascript
+function greet(lang) {
+  console.log(`Hello in ${lang}, I'm ${this.name}`);
+}
+
+const user = { name: "Clara" };
+
+greet.call(user, "English"); // Hello in English, I'm Clara
+greet.apply(user, ["French"]); // Hello in French, I'm Clara
+const boundGreet = greet.bind(user, "Spanish");
+boundGreet(); // Hello in Spanish, I'm Clara
+```
+
+> Here, `this` is manually bound to `user`.
+
+**4. Arrow Function Lexical `this`:**
+```javascript
+const team = {
+  name: "Dev Team",
+  members: ["Ann", "Ben"],
+  listMembers() {
+    this.members.forEach(member => {
+      console.log(`${member} is on ${this.name}`);
+    });
+  }
+};
+
+team.listMembers();
+// Ann is on Dev Team
+// Ben is on Dev Team
+```
+> Here, `this` refers to the `team` object.
+
+**5. In Event Listeners:**
+```javascript
+document.querySelector("#btn").addEventListener("click", function () {
+  console.log(this); // The button element
+});
+```
+
+> Here, `this` refers to the button element.
+
+**6. In `setInterval` and `setTimeout`:**
+```javascript
+const intervalId = setInterval(() => {
+  console.log("Hello");
+}, 1000);
+const timeoutId = setTimeout(() => {
+  console.log("Timeout");
+}, 2000);
+```
+> Here, `this` refers to the global object (`window` in browsers).
+
+
+
