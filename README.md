@@ -2184,3 +2184,79 @@ const timeoutId = setTimeout(() => {
 
 
 
+## 🔹 What is the difference between ViewState and SessionState?
+
+**ViewState** is a feature in ASP.NET that allows you to persist the state of a page across postbacks. It stores the state of the page in a hidden field called `__VIEWSTATE`. ViewState is useful when you need to maintain the state of a page across multiple postbacks, such as when a user clicks a button or submits a form.
+
+**SessionState** is a feature in ASP.NET that allows you to store session data on the server. It stores the data in a session state manager, which is accessed by the application using the `Session` object. SessionState is useful when you need to store data that is specific to a user's session, such as user preferences or shopping cart contents.
+
+
+
+
+## 🔹How to submit a form using JavaScript?
+
+In JavaScript, you can submit a form programmatically without the user clicking the submit button by using the `.submit()` method on the form element.
+
+Basic Example:
+```html
+<form id="myForm" action="/submit" method="POST">
+  <input type="text" name="username" value="JohnDoe" />
+</form>
+
+<script>
+  // Get the form element
+  const form = document.getElementById("myForm");
+
+  // Submit the form programmatically
+  form.submit();
+</script>
+```
+
+**How it works:**
+
+- `.submit()` directly triggers form submission.
+- It does not fire the `submit` event listeners — it bypasses them.
+
+
+With Validation Before Submit:
+```html
+<form id="loginForm" action="/login" method="POST">
+  <input type="text" name="username" placeholder="Username" required />
+  <input type="password" name="password" placeholder="Password" required />
+</form>
+
+<script>
+  const form = document.getElementById("loginForm");
+
+  function validateAndSubmit() {
+    if (form.checkValidity()) {
+      form.submit(); // Only submit if valid
+    } else {
+      alert("Please fill in all required fields.");
+    }
+  }
+
+  // Call validateAndSubmit() from anywhere
+  validateAndSubmit();
+</script>
+```
+
+Triggering Submit via Button Click:
+```html
+<form id="contactForm" action="/contact" method="POST">
+  <input type="email" name="email" placeholder="Email" required />
+  <button type="button" onclick="submitContactForm()">Submit</button>
+</form>
+
+<script>
+  function submitContactForm() {
+    document.getElementById("contactForm").submit();
+  }
+</script>
+```
+
+> Here, the button has `type="button"` so it doesn’t automatically submit; you control when to call `.submit()`.
+
+
+
+## 🔹What is a higher-order function in JavaScript?
