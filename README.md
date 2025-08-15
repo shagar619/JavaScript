@@ -1786,3 +1786,98 @@ fetchUser(42);
    - Localizing variables makes it easier to reason about code.
 
 
+## 🔹What is the use of the isNaN function?
+
+The `isNaN()` function in JavaScript is used to check whether a value is NaN (“Not-a-Number”).
+
+
+**Key Points:**
+
+- NaN is a special numeric value in JavaScript that represents an invalid number result (e.g., `0/0`, `parseInt("abc")`).
+
+- `isNaN(value)` returns:
+
+  - `true` → if the value is NaN (or cannot be coerced into a valid number).
+  - `false` → if the value is a valid number after coercion.
+
+- It converts the argument to a number before the check — which sometimes gives surprising results.
+
+Example:
+```javascript
+console.log(isNaN(123));       // false  ✅ valid number
+console.log(isNaN("123"));     // false  ✅ string can be converted to 123
+console.log(isNaN("abc"));     // true   ❌ can't convert to number
+console.log(isNaN(NaN));       // true   ✅ NaN is NaN
+console.log(isNaN(undefined)); // true   ❌ undefined becomes NaN when coerced
+```
+
+Professional Use Case: Input Validation
+```javascript
+function processPayment(amount) {
+  if (isNaN(amount)) {
+    throw new Error("Invalid amount. Please provide a numeric value.");
+  }
+  console.log(`Processing $${Number(amount).toFixed(2)}`);
+}
+
+processPayment("50");    // ✅ "Processing $50.00"
+processPayment("abc");   // ❌ Error: Invalid amount
+```
+
+
+
+
+## 🔹What is infinity in JS?
+
+In JavaScript, `Infinity` is a special numeric value that represents a number larger than any other possible number.
+
+It’s part of JavaScript’s number system (IEEE 754 floating-point) and has these characteristics:
+
+- Type: `number`
+- Greater than all finite numbers.
+- Can result from arithmetic operations like dividing a positive number by zero.
+
+How to Get `Infinity`:
+```javascript
+console.log(Infinity);              // Infinity
+console.log(Number.POSITIVE_INFINITY); // Infinity
+console.log(1 / 0);                  // Infinity
+console.log(Math.pow(10, 1000));     // Infinity (too large to represent)
+```
+
+Behavior in Comparisons:
+```javascript
+console.log(Infinity > 1e308); // true
+console.log(Infinity > 0);     // true
+console.log(Infinity > -Infinity); // true
+```
+
+Example: Finding the Minimum Value in an Array
+```javascript
+function findMin(numbers) {
+  let min = Infinity; // start with the largest possible number
+
+  for (const num of numbers) {
+    if (num < min) {
+      min = num;
+    }
+  }
+
+  return min;
+}
+
+console.log(findMin([15, 3, 27, -4, 8])); // -4
+```
+
+**Special Notes:**
+
+- `typeof` Infinity returns `"number"`.
+- Arithmetic rules with Infinity:
+
+```javascript
+console.log(Infinity + 1);    // Infinity
+console.log(Infinity - Infinity); // NaN (undefined result)
+console.log(1 / Infinity);    // 0
+```
+
+- Infinity can also appear in overflow situations where a number exceeds JavaScript’s maximum representable value (Number.MAX_VALUE).
