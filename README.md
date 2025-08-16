@@ -2582,3 +2582,84 @@ console.log(counter()); // 2
 2. Inner functions have access to outer function variables.
 3. This concept is the foundation of closures in JavaScript.
 
+
+
+## 🔹What is hoisting in JavaScript?
+
+Hoisting is JavaScript’s default behavior of moving declarations (not initializations) to the top of their scope during the compilation phase (before code execution).
+
+- **Function declarations** and **variable declarations** are hoisted.
+- **Only the declarations are hoisted**, not the assignments.
+
+Variable Hoisting (with `var`):
+```javascript
+console.log(x); // 👉 undefined (not ReferenceError!)
+var x = 5;
+console.log(x); // 👉 5
+```
+
+Explanation:
+
+The declaration `var x`; is hoisted to the top.
+But the assignment `x = 5`; stays in place.
+
+Internally, JavaScript treats it like:
+```javascript
+var x;          // hoisted
+console.log(x); // undefined
+x = 5;          // assignment remains
+console.log(x); // 5
+```
+
+Function Hoisting:
+```javascript
+sayHello(); // 👉 "Hello!"
+
+function sayHello() {
+  console.log("Hello!");
+}
+```
+
+Explanation:
+
+- Function declarations are fully hoisted (both name and body).
+- You can call the function before it’s defined in the code.
+
+
+`let` and `const` (Temporal Dead Zone):
+```javascript
+console.log(a); // ❌ ReferenceError
+let a = 10;
+
+console.log(b); // ❌ ReferenceError
+const b = 20;
+```
+
+Explanation:
+
+- `let` and `const` are also hoisted, but they are placed in a Temporal Dead Zone (TDZ) until the line of declaration is executed.
+- This means you cannot access them before declaration.
+
+Function Expression (Not Hoisted Fully):
+```javascript
+sayHi(); // ❌ TypeError: sayHi is not a function
+
+var sayHi = function() {
+  console.log("Hi!");
+};
+```
+
+Explanation:
+
+- `var sayHi` is hoisted (as `undefined`).
+- The function expression assignment happens later.
+- At the time of call, `sayHi` is still `undefined`, so calling it throws an error.
+
+
+**🔑 Key Takeaways:**
+
+1. `var` declarations → Hoisted and initialized with `undefined`.
+2. `let` and `const` → Hoisted but live in the Temporal Dead Zone until initialized.
+3. Function declarations → Fully hoisted (can be called before they appear).
+4. Function expressions / arrow functions → Behave like variables (`var`, `let`, `const`).
+
