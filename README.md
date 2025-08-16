@@ -2944,5 +2944,97 @@ showUser(1); // User: Alice, Role: Admin
 > 👉 This is clean, modular, testable, and scalable.
 
 
+## 🔹What is the **Strict** mode in JavaScript and how can it be enabled?
+
+**Strict Mode:**
+
+- Introduced in **ECMAScript 5** (**ES5**).
+- It changes the way JavaScript executes code by enforcing stricter rules.
+- Helps catch common coding mistakes and unsafe actions.
+- Eliminates some silent errors by throwing exceptions.
+
+**Enable Strict Mode:**
+
+**1. For the entire script:**
+
+Place `"use strict"`; at the top of a JavaScript file.
+```javascript
+"use strict";
+
+x = 10; // ❌ ReferenceError (must declare variable with let/const/var)
+```
+
+**2. For a specific function:**
+
+Place `"use strict"`; inside the function body.
+```javascript
+function demo() {
+  "use strict";
+  y = 20; // ❌ ReferenceError
+}
+
+demo();
+```
+
+> 👉 If `"use strict"`; is not at the very beginning, it will be ignored.
 
 
+
+**Effects of Strict Mode:**
+
+**1. Prevents using undeclared variables:**
+```javascript
+"use strict";
+x = 100; // ❌ ReferenceError
+```
+
+**2. Prevents deleting variables, functions, or objects:**
+```javascript
+"use strict";
+let num = 5;
+delete num; // ❌ SyntaxError
+```
+
+**3. Prevents duplicate parameter names:**
+```javascript
+"use strict";
+function test(a, a) { // ❌ SyntaxError
+  return a;
+}
+```
+
+**4. Makes this behave more predictably:**
+```javascript
+"use strict";
+function show() {
+  console.log(this); 
+}
+show(); // ❌ undefined (instead of global object)
+```
+
+**5. Reserved keywords for future use cannot be used as variable names:**
+```javascript
+"use strict";
+let public = 5; // ❌ SyntaxError
+let private = 10; // ❌ SyntaxError
+```
+
+**6. Silent errors become visible:**
+
+Without strict mode:
+```javascript
+num = 10; // Creates a global variable implicitly
+```
+
+With strict mode:
+```javascript
+"use strict";
+num = 10; // ❌ ReferenceError
+```
+
+**🔑 Why Use Strict Mode?**
+
+✔️ Helps write cleaner, more secure code
+✔️ Catches common mistakes early
+✔️ Makes code more consistent with modern JavaScript
+✔️ Recommended for all modern applications
