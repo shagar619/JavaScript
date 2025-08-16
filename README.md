@@ -1576,16 +1576,6 @@ fetchData();
 
 
 
-
-
-
-
-
-
-
-
-
-
 #### 🔸 Cannot use break or return to exit early.
 
 
@@ -2531,3 +2521,64 @@ try {
   }
 }
 ```
+
+
+## 🔹What is lexical scope in JavaScript?
+
+Lexical scope (also called static scope) means that the scope of a variable is determined by its position in the source code, and nested functions have access to variables declared in their parent functions.
+
+In other words:
+
+- Where you write your code defines which variables you can access.
+- Scope is fixed at the time of writing code, not when the code runs.
+
+✅ Example of Lexical Scope:
+```javascript
+function outerFunction() {
+  let outerVar = "I am outside!";
+  
+  function innerFunction() {
+    console.log(outerVar); // ✅ Accessible because of lexical scope
+  }
+  
+  innerFunction();
+}
+
+outerFunction();
+```
+
+**🔍 Explanation:**
+
+- `innerFunction` is defined inside outerFunction.
+- Because of lexical scope, `innerFunction` has access to variables declared in its parent (`outerVar`).
+- Even though `outerVar` is not inside `innerFunction`, JavaScript allows access because the function was written inside that scope.
+
+**Lexical Scope & Closures:**
+
+Closures are directly based on lexical scope.
+A closure allows a function to "remember" the scope in which it was created, even after that scope is gone.
+```javascript
+function createCounter() {
+  let count = 0;
+  
+  return function() {
+    count++;
+    return count;
+  };
+}
+
+const counter = createCounter();
+
+console.log(counter()); // 1
+console.log(counter()); // 2
+```
+
+> 👉 The inner function remembers `count` because of lexical scope, even after `createCounter()` has finished execution.
+
+
+**🔑 Key Takeaways:**
+
+1. Lexical scope is based on where you write the code, not where it’s called.
+2. Inner functions have access to outer function variables.
+3. This concept is the foundation of closures in JavaScript.
+
