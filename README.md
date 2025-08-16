@@ -2722,3 +2722,64 @@ if (name !== null) {
 
 > 💡 Example use case: taking small inputs from the user (like a name or password).
 
+
+
+## 🔹What is the use of `void(0)` in javascript?
+
+- The `void` operator in JavaScript evaluates an expression and returns `undefined`.
+- So, `void(0)` → evaluates `0` (or any expression) and then returns `undefined`.
+
+In practice, `void(0)` is often used to prevent an unwanted action like page refresh or navigation, while still allowing an event handler (e.g., `onclick`) to run.
+
+
+Preventing Link Navigation:
+```html
+<a href="javascript:void(0)" onclick="alert('Hello!')">
+  Click me
+</a>
+```
+
+- Normally, clicking a link reloads or navigates the page.
+- Using `javascript:void(0)` as the `href` ensures that nothing happens (the link doesn’t go anywhere).
+- Only the `onclick` event executes.
+
+Prevent Form Submission:
+```html
+<button type="button" onclick="void(0); alert('Button clicked!');">
+  Click Me
+</button>
+```
+
+- Here `void(0)` does nothing but ensures no unintended value is returned.
+
+Explicitly Returning `undefined`:
+```javascript
+function test() {
+  return void 123; // always returns undefined
+}
+
+console.log(test()); // undefined
+```
+
+- Regardless of the expression (`123`), `void` ensures the result is always `undefined`.
+
+
+**Important Notes:**
+
+- Modern best practice: Instead of `javascript:void(0)`, developers prefer:
+
+  - `href="#"` with `event.preventDefault()` in JavaScript, or
+  - Using a `<button>` element if it’s not an actual link.
+
+Example:
+
+```html
+<a href="#" onclick="event.preventDefault(); alert('Link clicked!');">
+  Click me
+</a>
+
+<button type="button" onclick="alert('Button clicked!');">
+  Click Me
+</button>
+```
+
