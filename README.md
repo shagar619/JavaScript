@@ -1,4 +1,4 @@
-<!-- markdownlint-disable MD012 MD026 MD001 MD022 MD032 MD029 MD019 MD034 MD031 MD047 MD040 MD009 MD058 MD024 MD038 MD010 MD056 MD033 MD041 MD045  -->
+<!-- markdownlint-disable MD012 MD026 MD001 MD022 MD032 MD029 MD019 MD034 MD031 MD047 MD040 MD009 MD058 MD024 MD038 MD010 MD056 MD033 MD041 MD045 MD007  -->
 
 <div>
 
@@ -2662,4 +2662,63 @@ Explanation:
 2. `let` and `const` → Hoisted but live in the Temporal Dead Zone until initialized.
 3. Function declarations → Fully hoisted (can be called before they appear).
 4. Function expressions / arrow functions → Behave like variables (`var`, `let`, `const`).
+
+
+
+
+
+## 🔹What are the types of Pop up boxes available in JavaScript?
+
+**Types of Popup Boxes in JavaScript:**
+
+**1. Alert Box:**
+
+- Displays a message with an OK button.
+- Used to give information or warnings.
+- Execution pauses until the user clicks "OK".
+
+```javascript
+alert("This is an alert message!");
+```
+
+> 💡 Example use case: showing a warning like “Form submission failed!”.
+
+
+2. Confirm Box
+
+Displays a message with **OK** and **Cancel** buttons.
+
+Returns:
+  - `true` → if user clicks **OK**
+  - `false` → if user clicks **Cancel**
+
+```javascript
+let response = confirm("Are you sure you want to delete this item?");
+if (response) {
+  console.log("Item deleted!");
+} else {
+  console.log("Action canceled.");
+}
+```
+
+> 💡 Example use case: asking for confirmation before performing critical actions (e.g., deleting data).
+
+
+**3. Prompt Box:**
+
+- Displays a message with a text field and **OK/Cancel** buttons.
+- Returns:
+  - The entered string (if user clicks **OK**)
+  - `null` (if user clicks **Cancel**)
+
+```javascript
+let name = prompt("What is your name?", "Guest");
+if (name !== null) {
+  console.log("Hello, " + name + "!");
+} else {
+  console.log("User canceled input.");
+}
+```
+
+> 💡 Example use case: taking small inputs from the user (like a name or password).
 
