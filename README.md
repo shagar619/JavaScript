@@ -1536,6 +1536,56 @@ arr.forEach((value) => {
 });
 ```
 
+#### 7. Array `map()`, `filter()`, `reduce()` (Iteration-like methods)
+
+These aren’t loops per se, but they are widely used for iteration.
+```javascript
+const prices = [100, 200, 300];
+
+// map - transform
+const discounted = prices.map(p => p * 0.9);
+
+// filter - conditionally include
+const affordable = prices.filter(p => p < 250);
+
+// reduce - accumulate
+const total = prices.reduce((sum, p) => sum + p, 0);
+
+console.log({ discounted, affordable, total });
+```
+
+#### 8. `for await...of` loop (ES2018)
+
+Used to iterate over async iterables (e.g., handling promises in sequence).
+```javascript
+// Example: Handling multiple promises sequentially
+const fetchData = async () => {
+  const promises = [
+    Promise.resolve("Data 1"),
+    Promise.resolve("Data 2"),
+    Promise.resolve("Data 3")
+  ];
+
+  for await (let result of promises) {
+    console.log(result);
+  }
+};
+
+fetchData();
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 #### 🔸 Cannot use break or return to exit early.
 
 
@@ -2481,5 +2531,3 @@ try {
   }
 }
 ```
-
-
