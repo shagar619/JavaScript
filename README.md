@@ -3384,3 +3384,18 @@ In summary:
 - Use `apply()` when you have an array of arguments.
 
 
+#### ❓How to target a particular frame from a hyperlink in JavaScript?
+To target a particular frame from a hyperlink in JavaScript, you can use the `window.frames` property along with the frame name or index. Here's an example:
+```html
+<a href="https://example.com" id="myLink" target="myFrame">Open in Frame</a>
+<iframe name="myFrame" src="about:blank"></iframe>
+
+<script>
+  document.getElementById("myLink").addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    const targetFrame = window.frames["myFrame"]; // Replace "myFrame" with your frame's name
+    targetFrame.location.href = this.href; // Navigate the frame to the link's URL
+  });
+</script>
+```
+
