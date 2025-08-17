@@ -3280,4 +3280,75 @@ console.log(logger.getLogs());
 
 > Here, `logs` is encapsulated — only accessible through the closure methods.
 
+**Function Factories (Configurable Functions):**
 
+Useful when generating functions dynamically:
+```javascript
+function multiplier(factor) {
+  return function (number) {
+    return number * factor;
+  };
+}
+
+const double = multiplier(2);
+const triple = multiplier(3);
+
+console.log(double(5)); // 10
+console.log(triple(5)); // 15
+```
+
+> Each returned function is a closure that remembers its own `factor`.
+
+
+**Maintaining State in Event Listeners:**
+
+Suppose you want to track how many times a button was clicked without polluting global scope:
+```javascript
+function setupClickCounter(buttonId) {
+  let count = 0;
+
+  document.getElementById(buttonId).addEventListener("click", () => {
+    count++;
+    console.log(`Button clicked ${count} times`);
+  });
+}
+
+setupClickCounter("myButton");
+```
+
+> ere, the anonymous function (closure) remembers `count`.
+
+
+**Async Context Preservation:**
+
+Closures are essential in asynchronous code:
+```javascript
+function fetchWithRetry(url, retries) {
+  return new Promise((resolve, reject) => {
+    function attempt(remaining) {
+      fetch(url)
+        .then(resolve)
+        .catch(err => {
+          if (remaining === 0) reject(err);
+          else attempt(remaining - 1);
+        });
+    }
+    attempt(retries);
+  });
+}
+
+fetchWithRetry("/api/data", 3)
+  .then(data => console.log("Success:", data))
+  .catch(err => console.error("Failed:", err));
+```
+
+> Here, the inner `attempt` function is a closure that remembers `remaining` across retries.
+
+**Summary:**
+
+- Closures = Function + Remembered Scope.
+- They allow:
+✅ Private variables (encapsulation)
+✅ State persistence without globals
+✅ Configurable/dynamic functions
+✅ Cleaner async/event code
