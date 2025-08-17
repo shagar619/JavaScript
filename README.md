@@ -3040,4 +3040,40 @@ num = 10; // ❌ ReferenceError
 - ✔️ Recommended for all modern applications
 
 
-## 🔹What are the purpose of using async/await over traditional callbacks or promises?
+## 🔹What are the purpose of using `async/await` over traditional `callbacks` or `promises`?
+
+Background: **Callbacks** vs **Promises** vs **Async/Await**
+
+1. **Callbacks:**
+
+- Functions passed into other functions to be executed later.
+- Problems:
+
+  - "Callback hell" → deeply nested code, hard to read/maintain.
+  - Error handling scattered (need to manually check err).
+  - Flow control is tricky.
+
+```javascript
+// Example with callbacks
+function fetchUser(id, callback) {
+  database.getUser(id, function (err, user) {
+    if (err) return callback(err);
+    api.getPosts(user.id, function (err, posts) {
+      if (err) return callback(err);
+      callback(null, { user, posts });
+    });
+  });
+}
+```
+
+**Promises:**
+
+A cleaner abstraction for async results.
+
+Problems:
+
+Still leads to chaining (.then().catch().finally()).
+
+Can get verbose when mixing multiple async operations.
+
+Less natural for sequential-looking code.
