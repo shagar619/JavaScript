@@ -3068,12 +3068,41 @@ function fetchUser(id, callback) {
 
 **Promises:**
 
-A cleaner abstraction for async results.
+- A cleaner abstraction for async results.
+- Problems:
 
-Problems:
+  - Still leads to chaining (`.then().catch().finally()`).
+  - Can get verbose when mixing multiple async operations.
+  - Less natural for sequential-looking code.
 
-Still leads to chaining (.then().catch().finally()).
+```javascript
+// Example with promises
+function fetchUser(id) {
+  return database.getUser(id)
+    .then(user => api.getPosts(user.id)
+      .then(posts => ({ user, posts })))
+    .catch(err => { throw err });
+}
+```
 
-Can get verbose when mixing multiple async operations.
+**Async/Await:**
 
-Less natural for sequential-looking code.
+- Syntactic sugar on top of Promises.
+- Makes async code look synchronous.
+- Easier to read, debug, and maintain.
+
+```javascript
+// Example with async/await
+async function fetchUser(id) {
+  try {
+    const user = await database.getUser(id);
+    const posts = await api.getPosts(user.id);
+    return { user, posts };
+  } catch (err) {
+    throw err;
+  }
+}
+```
+
+**Purposes of Using Async/Await:**
+
