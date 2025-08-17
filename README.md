@@ -3352,3 +3352,35 @@ fetchWithRetry("/api/data", 3)
 ✅ State persistence without globals
 ✅ Configurable/dynamic functions
 ✅ Cleaner async/event code
+
+
+
+## 🔹What is the difference between `call()` and `apply()` methods?
+
+The `call()` and `apply()` methods are both used to invoke a function with a specific `this` context and arguments. However, they differ in how they handle the arguments:
+
+- `call()` takes arguments individually:
+```javascript
+function greet(greeting, punctuation) {
+  console.log(`${greeting}, ${this.name}${punctuation}`);
+}
+
+const user = { name: "Alice" };
+greet.call(user, "Hello", "!"); // Hello, Alice!
+```
+
+- `apply()` takes an array of arguments:
+```javascript
+function greet(greeting, punctuation) {
+  console.log(`${greeting}, ${this.name}${punctuation}`);
+}
+
+const user = { name: "Alice" };
+greet.apply(user, ["Hello", "!"]); // Hello, Alice!
+```
+
+In summary:
+- Use `call()` when you have a fixed number of arguments.
+- Use `apply()` when you have an array of arguments.
+
+
