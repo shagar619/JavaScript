@@ -3106,3 +3106,101 @@ async function fetchUser(id) {
 
 **Purposes of Using Async/Await:**
 
+**1. Improved Readability (Synchronous Style):**
+
+- Code looks like synchronous flow, easier for humans to understand.
+- Avoids "pyramid of doom" in callbacks and heavy `.then()` chaining.
+
+**2. Better Error Handling:**
+
+- Works naturally with `try/catch`, rather than mixing `.catch()` everywhere.
+- Easier debugging since stack traces are cleaner.
+
+**3. Maintainability:**
+
+- Business logic expressed in a linear, step-by-step style.
+- Reduces mental overhead for future developers.
+
+**4. Integration with Modern JS:**
+
+- Works seamlessly with `Promise.all`, `for-await-of`, etc.
+- Allows concurrent and sequential flows in a clean manner.
+
+
+**Sequential API Calls:**
+
+Imagine you’re writing a backend that fetches user info, then needs their orders, then calculates totals.
+
+With Promises:
+```javascript
+function getUserOrderTotal(userId) {
+  return getUser(userId)
+    .then(user => getOrders(user.id))
+    .then(orders => calculateTotal(orders))
+    .catch(err => { throw err; });
+}
+```
+
+With Async/Await:
+```javascript
+async function getUserOrderTotal(userId) {
+  try {
+    const user = await getUser(userId);
+    const orders = await getOrders(user.id);
+    return calculateTotal(orders);
+  } catch (err) {
+    throw err;
+  }
+}
+```
+
+**Concurrent API Calls:**
+
+Fetching independent data (e.g., products, categories, and reviews).
+
+With Promises:
+```javascript
+Promise.all([getProducts(), getCategories(), getReviews()])
+  .then(([products, categories, reviews]) => {
+    console.log(products, categories, reviews);
+  })
+  .catch(console.error);
+```
+
+With Async/Await:
+```javascript
+async function loadDashboard() {
+  try {
+    const [products, categories, reviews] = await Promise.all([
+      getProducts(),
+      getCategories(),
+      getReviews()
+    ]);
+    console.log(products, categories, reviews);
+  } catch (err) {
+    console.error(err);
+  }
+}
+```
+
+**Looping with Async Operations:**
+
+Fetching user activity logs sequentially.
+
+With Promises:
+```javascript
+users.reduce((p, user) => {
+  return p.then(() => getActivity(user.id).then(log => console.log(log)));
+}, Promise.resolve());
+```
+
+With Async/Await:
+```javascript
+async function processLogs(users) {
+  for (const user of users) {
+    const log = await getActivity(user.id);
+    console.log(log);
+  }
+}
+```
+
