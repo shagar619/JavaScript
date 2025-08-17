@@ -3399,3 +3399,93 @@ To target a particular frame from a hyperlink in JavaScript, you can use the `wi
 </script>
 ```
 
+## 🔹Write the errors shown in JavaScript?
+
+**1. Base Error Object:**
+
+All errors derive from the built-in `Error` constructor:
+```javascript
+const err = new Error("Something went wrong!");
+console.log(err.name);    // "Error"
+console.log(err.message); // "Something went wrong!"
+console.log(err.stack);   // stack trace
+```
+
+**2. Standard Error Types in JavaScript:**
+
+**a) SyntaxError:**
+
+Occurs when code has invalid syntax.
+```javascript
+// Example
+eval("let a = ;"); 
+// Uncaught SyntaxError: Unexpected token ';'
+```
+
+**b) ReferenceError:**
+
+Occurs when referring to a variable that doesn’t exist or is out of scope.
+```javascript
+// Example
+console.log(myVariable); // Uncaught ReferenceError: myVariable is not defined
+```
+
+**c) TypeError:**
+
+Occurs when a value is not of the expected type (e.g., calling something that’s not a function).
+```javascript
+let num = 42;
+num.toUpperCase(); 
+// Uncaught TypeError: num.toUpperCase is not a function
+```
+
+**d) RangeError:**
+
+Occurs when a number is outside the allowed range.
+```javascript
+let arr = new Array(-5); 
+// Uncaught RangeError: Invalid array length
+```
+
+**e) EvalError (rarely used today):**
+
+Related to the `eval()` function usage. Modern JS engines almost never throw this explicitly, but it exists for legacy reasons.
+```javascript
+// Historically thrown with incorrect eval usage
+throw new EvalError("Eval function error");
+```
+
+**f) URIError:**
+
+Thrown when using malformed `encodeURI()` or `decodeURI()`.
+```javascript
+decodeURI("%"); 
+// Uncaught URIError: URI malformed
+```
+
+
+**g) AggregateError (ES2021+):**
+
+Represents multiple errors at once, usually from `Promise.any()` or `Promise.allSettled()`.
+```javascript
+Promise.any([
+  Promise.reject(new Error("Error A")),
+  Promise.reject(new Error("Error B"))
+]).catch(e => console.log(e.errors));
+// [ Error: Error A, Error: Error B ]
+```
+
+**3. Custom Errors:**
+
+You can create your own error types by extending Error:
+```javascript
+class ValidationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "ValidationError";
+  }
+}
+
+throw new ValidationError("Invalid user input!");
+```
+
