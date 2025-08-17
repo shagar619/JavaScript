@@ -3204,3 +3204,80 @@ async function processLogs(users) {
 }
 ```
 
+
+
+
+## 🔹What are closures in JavaScript, and when to use them?
+
+Closures are a fundamental concept in JavaScript, allowing functions to "remember" the environment in which they were created. A closure is formed when a function is defined inside another function, giving the inner function access to the outer function's variables.
+
+#### When to Use Closures:
+
+Closures are used when you want to:
+
+**1. Data Encapsulation / Information Hiding:**
+  - Keep certain variables private and only expose controlled access.
+
+**2. Function Factories (Dynamic Function Creation):**
+  - Generate functions that remember specific configuration.
+
+**3. Maintaining State Across Function Calls:**
+  - Keep track of values without relying on global variables.
+
+**4. Callbacks and Asynchronous Code:**
+  - Closures help preserve context in async operations (e.g., event listeners, setTimeout).
+
+### Example of a Closure:
+
+```javascript
+function outer() {
+  let counter = 0;
+  
+  function inner() {
+    counter++;
+    return counter;
+  }
+  
+  return inner;
+}
+
+const increment = outer();
+console.log(increment()); // 1
+console.log(increment()); // 2
+console.log(increment()); // 3
+```
+
+Here:
+
+- `inner()` is a closure.
+- It remembers `counter` from `outer()’s` scope even though `outer()` has already finished execution.
+
+
+**Encapsulation (Private Variables in Modules):**
+
+Imagine you’re building a logging utility where you don’t want direct access to internal state:
+```javascript
+function createLogger() {
+  let logs = []; // private
+
+  return {
+    addLog(message) {
+      logs.push({ message, timestamp: new Date() });
+    },
+    getLogs() {
+      return [...logs]; // safe copy
+    }
+  };
+}
+
+const logger = createLogger();
+logger.addLog("System started");
+logger.addLog("User logged in");
+
+console.log(logger.getLogs());
+// Direct access to `logs` is not possible
+```
+
+> Here, `logs` is encapsulated — only accessible through the closure methods.
+
+
