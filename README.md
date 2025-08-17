@@ -3034,7 +3034,10 @@ num = 10; // ❌ ReferenceError
 
 **🔑 Why Use Strict Mode?**
 
-✔️ Helps write cleaner, more secure code
-✔️ Catches common mistakes early
-✔️ Makes code more consistent with modern JavaScript
-✔️ Recommended for all modern applications
+- ✔️ Helps write cleaner, more secure code
+- ✔️ Catches common mistakes early
+- ✔️ Makes code more consistent with modern JavaScript
+- ✔️ Recommended for all modern applications
+
+
+## 🔹What are the purpose of using async/await over traditional callbacks or promises?
