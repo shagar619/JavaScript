@@ -3747,3 +3747,75 @@ console.log(fibFast(40)); // Much faster due to caching
 - The function has side effects (e.g., network calls, random values).
 - Cache memory overhead is a concern.
 
+
+
+## 🔹What is the difference between a shallow copy and a deep copy?
+
+**1. Shallow Copy:**
+
+- A shallow copy creates a new object, but only copies references of nested objects, not the actual nested objects themselves.
+- Changes to nested objects in the copy will also affect the original (since both point to the same memory reference).
+
+Example (Shallow Copy):
+```javascript
+const original = { 
+  name: "Alice", 
+  address: { city: "New York" } 
+};
+
+// Shallow copy using spread
+const shallowCopy = { ...original };
+
+shallowCopy.name = "Bob"; // only changes copy
+shallowCopy.address.city = "Los Angeles"; // affects BOTH
+
+console.log(original.name);      // "Alice"
+console.log(original.address.city); // "Los Angeles" ❌ changed
+```
+
+**2. Deep Copy:**
+
+- A deep copy creates a new object and recursively copies all nested objects.
+- Original and copied objects are fully independent.
+- Changing nested objects in the copy won’t affect the original.
+
+Example (Deep Copy):
+```javascript
+const original = { 
+  name: "Alice", 
+  address: { city: "New York" } 
+};
+
+// Deep copy using structuredClone (modern way)
+const deepCopy = structuredClone(original);
+
+deepCopy.address.city = "Los Angeles"; // only changes copy
+
+console.log(original.address.city); // "New York" ✅ unchanged
+```
+
+**Ways to Make Copies in JavaScript:**
+
+**Shallow Copy Methods:**
+
+1. Spread Operator:
+```javascript
+const shallowCopy = { ...original };
+```
+
+2. `Object.assign()`:
+```javascript
+const shallowCopy = Object.assign({}, original);
+```
+
+3. `Array.prototype.slice()`:
+```javascript
+const shallowCopy = original.slice();
+```
+
+4. `Array.concat()`:
+```javascript
+const shallowCopy = original.concat();
+```
+
+
