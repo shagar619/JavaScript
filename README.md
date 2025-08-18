@@ -3576,3 +3576,81 @@ const input = form.elements[0];
 const image = document.images[0];
 ```
 
+
+
+## 🔹What is an event bubbling in JavaScript?
+
+Event bubbling is the process in which an event starts from the target element (the innermost element that triggered the event) and then bubbles up to its ancestors (parent → grandparent → ... → `document`).
+
+It follows the DOM hierarchy from child → parent → root.
+
+Simple Example:
+```html
+<div id="parent">
+  <button id="child">Click Me</button>
+</div>
+
+<script>
+  document.getElementById("child").addEventListener("click", () => {
+    console.log("Child clicked");
+  });
+
+  document.getElementById("parent").addEventListener("click", () => {
+    console.log("Parent clicked");
+  });
+
+  document.body.addEventListener("click", () => {
+    console.log("Body clicked");
+  });
+</script>
+```
+
+Output when you click the button:
+```css
+Child clicked
+Parent clicked
+Body clicked
+```
+
+> ✅ The event starts at the child button, then bubbles up to `#parent`, then to `<body>`.
+
+
+**Event Flow in JavaScript:**
+
+JavaScript event flow has three phases:
+
+1. **Capturing Phase** – Event moves from the root (`document`) down to the target.
+2. **Target Phase** – Event hits the target element.
+3. **Bubbling Phase** – Event bubbles up from the target back to the root.
+
+By default, most event listeners listen in the bubbling phase.
+
+
+**Stopping Bubbling:**
+
+Sometimes, you don’t want an event to bubble further up the DOM. You can stop it:
+```javascript
+document.getElementById("child").addEventListener("click", (e) => {
+  console.log("Child clicked");
+  e.stopPropagation(); // prevents bubbling
+});
+```
+
+> Now only `"Child clicked"` is logged.
+
+**Practical Uses:**
+
+- **Event Delegation:** Instead of attaching listeners to multiple child elements, attach one to a parent and let bubbling handle it.
+
+Example: Handling clicks for a dynamic list.
+```javascript
+const list = document.getElementById("my-list");
+list.addEventListener("click", (e) => {
+  if (e.target.tagName === "LI") {
+    console.log("Clicked on:", e.target.textContent);
+  }
+});
+```
+
+- **Global Behaviors**: Closing dropdowns/modals when clicking outside.
+- **Analytics Tracking**: Catching clicks at higher levels instead of attaching listeners everywhere.
