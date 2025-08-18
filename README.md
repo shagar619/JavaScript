@@ -3654,3 +3654,96 @@ list.addEventListener("click", (e) => {
 
 - **Global Behaviors**: Closing dropdowns/modals when clicking outside.
 - **Analytics Tracking**: Catching clicks at higher levels instead of attaching listeners everywhere.
+
+
+
+## 🔹Explain the concept of memoization in JavaScript?
+
+Memoization is an optimization technique where you cache (store) the results of expensive function calls and return the cached result when the same inputs occur again.
+
+In simple terms:
+
+- Without memoization: The function recalculates results every time.
+- With memoization: The function remembers ("memoizes") previous results, making repeated calls faster.
+
+Basic Example (Without Memoization):
+```javascript
+function slowSquare(n) {
+  console.log("Calculating...");
+  return n * n;
+}
+
+console.log(slowSquare(5)); // "Calculating..." → 25
+console.log(slowSquare(5)); // "Calculating..." → 25 (recomputed again!)
+```
+
+> Even though the input `5` is the same, the function recalculates.
+
+**Memoized Version:**
+```javascript
+function memoizedSquare() {
+  const cache = {}; // closure to store results
+
+  return function(n) {
+    if (cache[n] !== undefined) {
+      console.log("Fetching from cache...");
+      return cache[n];
+    }
+    console.log("Calculating...");
+    const result = n * n;
+    cache[n] = result;
+    return result;
+  };
+}
+
+const square = memoizedSquare();
+
+console.log(square(5)); // "Calculating..." → 25
+console.log(square(5)); // "Fetching from cache..." → 25
+```
+
+> ✅ The second call is instant because the result is cached.
+
+The Fibonacci sequence is a classic case for memoization (since it has overlapping subproblems).
+
+Naive recursive version (inefficient):
+```javascript
+function fib(n) {
+  if (n <= 1) return n;
+  return fib(n - 1) + fib(n - 2);
+}
+
+console.log(fib(40)); // Very slow
+```
+
+Memoized version (efficient):
+```javascript
+function memoizedFib() {
+  const cache = {};
+
+  function fib(n) {
+    if (n in cache) return cache[n];
+    if (n <= 1) return n;
+    cache[n] = fib(n - 1) + fib(n - 2);
+    return cache[n];
+  }
+
+  return fib;
+}
+
+const fibFast = memoizedFib();
+console.log(fibFast(40)); // Much faster due to caching
+```
+
+**✅ Use it when:**
+
+- The function is pure (same input → same output, no side effects).
+- The function is expensive (CPU or I/O heavy).
+- The function is called repeatedly with the same inputs.
+
+**⚠️ Avoid memoization when:**
+
+- Inputs are always unique (caching won’t help).
+- The function has side effects (e.g., network calls, random values).
+- Cache memory overhead is a concern.
+
