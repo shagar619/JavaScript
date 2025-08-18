@@ -3819,3 +3819,21 @@ const shallowCopy = original.concat();
 ```
 
 
+**Deep Copy Methods:**
+
+1. `structuredClone()` (modern way):
+```javascript
+const deepCopy = structuredClone(original);
+```
+
+2. `JSON.parse(JSON.stringify())` (not recommended for complex objects):
+```javascript
+const deepCopy = JSON.parse(JSON.stringify(original));
+```
+
+3. `_.cloneDeep()` (using Lodash):
+```javascript
+const deepCopy = _.cloneDeep(original);
+```
+
+
