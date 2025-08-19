@@ -3916,3 +3916,40 @@ There are two main styles of IIFEs:
 }());
 ```
 
+## 🔹What is static and dynamic typed language? Which type language javascript is?
+
+- **Static Typed Language:**
+  - In static typing, the type of a variable is known at compile time.
+  - You must declare the type explicitly (or it’s inferred at compile time).
+  - Type checking happens before execution → many errors are caught early.
+  - Examples: Java, C, C++.
+
+Example:
+```java
+int age = 25;  // must always be an integer
+age = "hello"; // ❌ compile-time error
+```
+
+- **Dynamic Typed Language:**
+  - In dynamic typing, the type of a variable is determined at runtime.
+  - You don’t declare types explicitly; you just assign values.
+  - Variables can change types during execution.
+  - Examples: JavaScript, Python, Ruby.
+
+Example:
+```javascript
+let value = 10;     
+console.log(typeof value); // number
+
+value = "hello";    
+console.log(typeof value); // string ✅ allowed
+
+value = true;       
+console.log(typeof value); // boolean ✅ allowed
+```
+
+**JavaScript is a dynamically typed language.**
+- You can assign any type of value to a variable without declaring its type.
+- Variables can change types during execution.
+- JavaScript is dynamically typed.
+- This flexibility allows for more rapid development but can lead to runtime errors if not carefully managed.
