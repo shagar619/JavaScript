@@ -3840,3 +3840,32 @@ const deepCopy = _.cloneDeep(original);
 
 
 ## 🔹What is an IIFE in JavaScript?
+
+👉 **IIFE** stands for **Immediately Invoked Function Expression**.
+
+It’s a function in JavaScript that runs as soon as it is defined.
+The syntax involves wrapping a function in parentheses and then immediately invoking it with another pair of parentheses.
+
+Example:
+```javascript
+(function() {
+  console.log("IIFE executed");
+})();
+```
+- The function is **defined** and **invoked immediately**.
+- No need to call it separately later.
+
+**Why Use IIFE?**
+
+**1. Avoid polluting the global scope:**
+
+- Variables inside an IIFE are scoped to the function, not the global window or globalThis.
+
+**2. Encapsulation / Privacy:**
+
+- Useful for creating private variables (before ES6 let, const, and modules).
+
+**3. Initialization code:**
+
+- Run setup code only once (e.g., event listeners, configs).
+
