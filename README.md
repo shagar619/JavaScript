@@ -4016,3 +4016,76 @@ console.log(user.name); // "Alice" ✅ original not changed
 ```
 
 > Here, the function reassigns `obj` to a new object, but the original user is `unaffected`.
+
+
+
+## 🔹What is currying in JavaScript?
+
+👉 Currying is the process of transforming a function that takes multiple arguments into a sequence of functions, each taking one argument at a time.
+
+Instead of:
+```javascript
+function add(a, b, c) {
+  return a + b + c;
+}
+console.log(add(1, 2, 3)); // 6
+```
+
+You can transform it into a curried version:
+```javascript
+function add(a) {
+  return function (b) {
+    return function (c) {
+      return a + b + c;
+    };
+  };
+}
+console.log(add(1)(2)(3)); // 6
+```
+
+
+**Why Use Currying? (Benefits):**
+
+1. Reusability (Partial Application) 
+
+    - You can “preset” arguments for specialized functions.
+
+2. Function Composition
+
+   - Makes functions easier to compose in functional programming.
+
+3. Cleaner, more modular code
+
+   - Avoids repeating arguments in pipelines or event handlers.
+
+
+**Event Handling:**
+```javascript
+function handleEvent(eventType) {
+  return function(elementId) {
+    document.getElementById(elementId)
+      .addEventListener(eventType, () => {
+        console.log(`${eventType} triggered on #${elementId}`);
+      });
+  };
+}
+
+const onClick = handleEvent("click");
+onClick("myButton"); // creates a click handler for #myButton
+```
+
+With Arrow Functions (cleaner):
+```javascript
+const add = a => b => c => a + b + c;
+
+console.log(add(1)(2)(3)); // 6
+```
+
+**Difference: Currying vs Partial Application:**
+
+- Currying: Always returns unary (1-argument) functions.
+  `f(a, b, c)` → `f(a)(b)(c)`
+- Partial Application: Fixes some arguments and returns a function with fewer arguments left.
+`f(a, b, c)` → `f(a, b)` → function expecting only `c`
+
+
