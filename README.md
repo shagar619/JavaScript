@@ -3837,3 +3837,6 @@ const deepCopy = _.cloneDeep(original);
 ```
 
 
+
+
+## 🔹What is an IIFE in JavaScript?
