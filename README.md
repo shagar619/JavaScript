@@ -3859,13 +3859,60 @@ Example:
 
 **1. Avoid polluting the global scope:**
 
-- Variables inside an IIFE are scoped to the function, not the global window or globalThis.
+- Variables inside an IIFE are scoped to the function, not the global `window` or `globalThis`.
 
 **2. Encapsulation / Privacy:**
 
-- Useful for creating private variables (before ES6 let, const, and modules).
+- Useful for creating private variables (before ES6 `let`, `const`, and modules).
 
 **3. Initialization code:**
 
 - Run setup code only once (e.g., event listeners, configs).
+
+Examples: **Encapsulation**
+```javascript
+const counter = (function () {
+  let count = 0; // private variable
+
+  return {
+    increment() { return ++count; },
+    decrement() { return --count; }
+  };
+})();
+
+console.log(counter.increment()); // 1
+console.log(counter.increment()); // 2
+console.log(counter.decrement()); // 1
+```
+> Here, `count` is private — it cannot be accessed directly, only via methods.
+
+**One-Time Initialization:**
+```javascript
+(function () {
+  console.log("App initialized");
+  // setup event listeners, configs, etc.
+})();
+```
+
+**With Arrow Functions:**
+```javascript
+(() => {
+  console.log("IIFE with arrow function");
+})();
+```
+
+**IIFE Variations:**
+
+There are two main styles of IIFEs:
+```javascript
+// Classic
+(function () {
+  console.log("Classic IIFE");
+})();
+
+// Alternative
+(function () {
+  console.log("Alternative IIFE");
+}());
+```
 
