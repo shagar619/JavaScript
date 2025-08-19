@@ -3953,3 +3953,66 @@ console.log(typeof value); // boolean ✅ allowed
 - Variables can change types during execution.
 - JavaScript is dynamically typed.
 - This flexibility allows for more rapid development but can lead to runtime errors if not carefully managed.
+
+
+
+
+## 🔹Explain passed by value and passed by reference.
+
+**1. Pass by Value:**
+
+When a variable is passed by value, a copy of the actual value is made and passed into the function.
+
+- The function works on the copy, not the original.
+- Changes inside the function do not affect the original variable.
+
+👉 In JavaScript, primitive types are passed by value.
+(Examples: `Number`, `String`, `Boolean`, `null`, `undefined`, `Symbol`, `BigInt`)
+```javascript
+function changeValue(x) {
+  x = 100;   // modifies only the copy
+}
+
+let num = 50;
+changeValue(num);
+
+console.log(num); // 50 ✅ original is unchanged
+```
+
+**Pass by Reference:**
+
+When a variable is passed by reference, instead of copying the value, a reference (memory address) is passed.
+
+- The function works on the same object in memory.
+- Changes inside the function do affect the original.
+
+👉 In JavaScript, **objects** and **arrays** are passed by reference (technically, the reference itself is passed by value, but it still points to the same object).
+```javascript
+function changeName(obj) {
+  obj.name = "Bob"; // modifies the original object
+}
+
+let person = { name: "Alice" };
+changeName(person);
+
+console.log(person.name); // "Bob" ✅ original object changed
+```
+
+Technically, everything in JavaScript is passed by value.
+
+- For primitives → the value is copied directly.
+- For objects/arrays → the reference itself is copied (by value), but since it points to the same memory, changes affect the original.
+
+Example (reference reassignment):
+```javascript
+function changeObject(obj) {
+  obj = { name: "Charlie" }; // reassigning the local reference only
+}
+
+let user = { name: "Alice" };
+changeObject(user);
+
+console.log(user.name); // "Alice" ✅ original not changed
+```
+
+> Here, the function reassigns `obj` to a new object, but the original user is `unaffected`.
