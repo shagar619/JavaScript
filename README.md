@@ -4089,3 +4089,141 @@ console.log(add(1)(2)(3)); // 6
 `f(a, b, c)` → `f(a, b)` → function expecting only `c`
 
 
+
+
+## 🔹What is DOM?
+
+**What is DOM?**
+
+👉 **DOM** stands for **Document Object Model**.
+
+- It is a programming interface provided by the browser that represents the structure of an HTML or XML document as a tree of objects.
+- Every element (`<div>`, `<p>`, `<h1>`, etc.), attribute (class, `id`), and text in the page becomes a node in this tree.
+- JavaScript can interact with this tree to create, read, update, or delete elements dynamically.
+
+In simple words:
+
+- `HTML` → static markup
+- `DOM` → dynamic, live representation in memory
+
+**DOM Tree Structure:**
+
+For example, HTML:
+```html
+<html>
+  <body>
+    <h1>Hello</h1>
+    <p>Welcome to DOM</p>
+  </body>
+</html>
+```
+
+DOM Tree (visual):
+```css
+Document
+ └── <html>
+      └── <body>
+           ├── <h1> → "Hello"
+           └── <p> → "Welcome to DOM"
+```
+
+**DOM Operations:**
+
+**A) Accessing Elements:**
+```javascript
+// Get element by ID
+const header = document.getElementById("header");
+
+// Get elements by class name
+const items = document.getElementsByClassName("item");
+
+// Get elements by tag name
+const paragraphs = document.getElementsByTagName("p");
+
+// Query selector (CSS-style)
+const main = document.querySelector("main");
+const allItems = document.querySelectorAll(".item");
+```
+
+**B) Modifying Elements:**
+```javascript
+// Change the header text
+header.textContent = "New Header";
+
+// Update styles
+header.style.color = "blue";
+
+// Add a new class
+header.classList.add("highlight");
+
+// Remove an item
+items[0].remove();
+
+// Change the content of all paragraphs
+Array.from(paragraphs).forEach(p => {
+  p.textContent = "Updated paragraph.";
+});
+```
+
+**C) Creating and Appending Elements:**
+```javascript
+// Create a new element
+const newDiv = document.createElement("div");
+newDiv.textContent = "I'm a new div!";
+document.body.appendChild(newDiv);
+```
+
+**E) Event Handling:**
+```javascript
+// Add an event listener
+header.addEventListener("click", () => {
+  alert("Header was clicked!");
+});
+```
+
+
+
+Let’s create a dynamic todo list using DOM manipulation.
+
+**HTML:**
+```html
+<div id="app">
+  <input id="taskInput" type="text" placeholder="Enter a task" />
+  <button id="addBtn">Add Task</button>
+  <ul id="taskList"></ul>
+</div>
+```
+
+**JavaScript:**
+```javascript
+const input = document.getElementById("taskInput");
+const addBtn = document.getElementById("addBtn");
+const taskList = document.getElementById("taskList");
+
+addBtn.addEventListener("click", () => {
+  const task = input.value.trim();
+  if (!task) return;
+
+  // Create new list item
+  const li = document.createElement("li");
+  li.textContent = task;
+
+  // Add delete button
+  const delBtn = document.createElement("button");
+  delBtn.textContent = "❌";
+  delBtn.addEventListener("click", () => li.remove());
+
+  li.appendChild(delBtn);
+  taskList.appendChild(li);
+
+  input.value = ""; // clear input
+});
+```
+
+**Behavior:**
+
+- User types a task → clicks "Add Task" → new `<li>` appears.
+- Each task has a ❌ delete button.
+- All of this is possible because JavaScript interacts with the **DOM** tree.
+
+
