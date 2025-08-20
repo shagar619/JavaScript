@@ -4331,3 +4331,49 @@ const add = (a, b) => a + b;
 
 > ✅ It makes code shorter and easier to read.
 
+Syntax:
+```javascript
+const calculate = (a, b) => {
+  const sum = a + b;
+  const product = a * b;
+  return { sum, product };
+};
+
+console.log(calculate(2, 3)); // { sum: 5, product: 6 }
+```
+
+**Key Features:**
+
+**✅ Shorter syntax:**
+
+No need for `function` keyword.
+
+**✅ Implicit return:**
+
+If the function body has only one expression, the result is automatically returned (no need for `return` keyword).
+```javascript
+const double = (x) => x * 2;
+console.log(double(4)); // 8
+```
+
+**✅ Lexical `this` binding:**
+
+Unlike regular functions, arrow functions do not have their own `this`.
+They inherit `this` from their surrounding scope.
+
+👉 Example:
+```javascript
+function Person() {
+  this.age = 0;
+
+  setInterval(() => {
+    this.age++;  // 'this' refers to Person, not setInterval
+    console.log(this.age);
+  }, 1000);
+}
+
+new Person();
+```
+
+> ⚠️ With a normal function inside `setInterval`, this would refer to the global object (or `undefined` in strict mode), not the `Person` object.
+
