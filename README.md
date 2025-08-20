@@ -4377,3 +4377,60 @@ new Person();
 
 > ⚠️ With a normal function inside `setInterval`, this would refer to the global object (or `undefined` in strict mode), not the `Person` object.
 
+
+**✅ No `arguments` object:**
+
+Arrow functions don’t have their own `arguments`. You use rest parameters (`...args`) instead.
+```javascript
+const sum = (...args) => {
+  return args.reduce((acc, curr) => acc + curr, 0);
+};
+
+console.log(sum(1, 2, 3, 4)); // 10
+```
+
+**When to Use Arrow Functions:**
+
+✅ Best for callbacks and short functions:
+```javascript
+// Array map/filter/reduce
+const numbers = [1, 2, 3, 4];
+const doubled = numbers.map((n) => n * 2);
+console.log(doubled); // [2, 4, 6, 8]
+```
+
+✅ Useful in event listeners when you don’t want a new `this`:
+```javascript
+const button = document.getElementById("myButton");
+button.addEventListener("click", () => {
+  console.log(this); // Refers to the surrounding scope, not the button
+});
+```
+
+✅ Good for functional programming style:
+```javascript
+const numbers = [1, 2, 3, 4];
+const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+console.log(sum); // 10
+```
+
+**When Not to Use Arrow Functions:**
+
+- When you need a function with its own `this` context (e.g., methods in classes).
+```javascript
+class Counter {
+  constructor() {
+    this.count = 0;
+  }
+
+  increment() {
+    setTimeout(function() {
+      this.count++; // 'this' refers to the global object, not Counter
+      console.log(this.count);
+    }, 1000);
+  }
+}
+```
+
+> ❌ When you need `arguments` object (use normal function instead).
+
