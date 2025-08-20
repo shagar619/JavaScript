@@ -4311,3 +4311,23 @@ const server = http.createServer((req, res) => {
 server.listen(3000, () => console.log("Server running on http://localhost:3000"));
 ```
 
+
+
+## 🔹What are arrow functions in javascript?
+
+👉 An arrow function is a shorter, more concise way to write functions in JavaScript.
+
+Instead of writing:
+```javascript
+function add(a, b) {
+  return a + b;
+}
+```
+
+You can write:
+```javascript
+const add = (a, b) => a + b;
+```
+
+> ✅ It makes code shorter and easier to read.
+
