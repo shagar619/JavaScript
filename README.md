@@ -4434,3 +4434,27 @@ class Counter {
 
 > ❌ When you need `arguments` object (use normal function instead).
 
+
+
+## 🔹In JavaScript, how many different methods can you make an object?
+
+In JavaScript, there are several ways to create an object, depending on your use case. Objects are the backbone of JS, so interviewers love asking this.
+
+
+**🔑 1. Object Literal (Most Common):**
+
+The simplest and most widely used way.
+```javascript
+const user = {
+  name: "Alice",
+  age: 25,
+  greet: function() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+};
+
+user.greet(); // Hello, my name is Alice
+```
+
+> ✅ Best for creating single objects quickly.
+
