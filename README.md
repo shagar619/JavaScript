@@ -4458,3 +4458,21 @@ user.greet(); // Hello, my name is Alice
 
 > ✅ Best for creating single objects quickly.
 
+
+**🔑 2. `new Object()` Constructor:**
+
+Using the built-in `Object` constructor.
+```javascript
+const user = new Object();
+user.name = "Alice";
+user.age = 25;
+user.greet = function() {
+  console.log(`Hello, my name is ${this.name}`);
+};
+
+user.greet(); // Hello, my name is Alice
+```
+
+> ✅ Useful when you want to create an object dynamically.
+
+
