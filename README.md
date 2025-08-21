@@ -4593,6 +4593,23 @@ const admin = {
 
 console.log(admin); // { name: "Alice", age: 25, role: "admin" }
 ```
-> ✅ Modern and concise way to copy and add properties.
+> ✅ Modern, elegant, great for immutability in React/Redux.
+
+
+**🔑 9. Singleton with `new function() { }`:**
+
+Less common, but possible.
+```javascript
+const singleton = new function() {
+  this.name = "Singleton Instance";
+  this.getName = function() {
+    return this.name;
+  };
+}();
+
+console.log(singleton.getName()); // Singleton Instance
+```
+
+> ✅ Rare, but used in specific cases (like single-instance configs).
 
 
