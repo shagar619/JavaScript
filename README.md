@@ -4497,3 +4497,24 @@ user2.greet(); // Hello, my name is Bob
 > ✅ Useful when you need to create multiple objects with similar properties and methods.
 
 
+**🔑 4. ES6 `class` Syntax:**
+
+Syntactic sugar over constructor functions + prototypes.
+```javascript
+class Vehicle {
+  constructor(name, maker, engine) {
+    this.name = name;
+    this.maker = maker;
+    this.engine = engine;
+  }
+  display() {
+    console.log(`${this.name} is made by ${this.maker} with an engine size of ${this.engine}`);
+  }
+}
+const car1 = new Vehicle('GT', 'BMW', '1998cc');
+car1.display(); // GT is made by BMW with an engine size of 1998cc
+```
+
+> ✅ Best for creating blueprints for similar objects.
+
+
