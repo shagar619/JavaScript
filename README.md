@@ -4561,3 +4561,38 @@ dog2.bark(); // Max says woof!
 ```
 > ✅ Preferred in functional programming, avoids `this` pitfalls.
 
+
+**🔑 7. Using `Object.assign()`:**
+
+Create and copy properties into a new object.
+```javascript
+const user = {
+  name: "Alice",
+  age: 25
+};
+
+const admin = Object.assign({}, user, { role: "admin" });
+
+console.log(admin); // { name: "Alice", age: 25, role: "admin" }
+```
+> ✅ Useful for merging objects or adding properties.
+
+
+**🔑 8. Using Object Destructuring / Spread Operator:**
+
+```javascript
+const user = {
+  name: "Alice",
+  age: 25
+};
+
+const admin = {
+  ...user,
+  role: "admin"
+};
+
+console.log(admin); // { name: "Alice", age: 25, role: "admin" }
+```
+> ✅ Modern and concise way to copy and add properties.
+
+
