@@ -4539,3 +4539,25 @@ dog.bark();  // Dog barks
 > ✅ Useful for prototypal inheritance.
 
 
+**🔑 6. Factory Function:**
+
+A normal function that returns an object.
+```javascript
+function createDog(name, breed) {
+  return {
+    name,
+    breed,
+    bark() {
+      console.log(`${this.name} says woof!`);
+    }
+  };
+}
+
+const dog1 = createDog("Buddy", "Golden Retriever");
+const dog2 = createDog("Max", "Beagle");
+
+dog1.bark(); // Buddy says woof!
+dog2.bark(); // Max says woof!
+```
+> ✅ Preferred in functional programming, avoids `this` pitfalls.
+
