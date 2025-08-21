@@ -4475,4 +4475,25 @@ user.greet(); // Hello, my name is Alice
 
 > ✅ Useful when you want to create an object dynamically.
 
+**🔑 3. Constructor Function:**
+
+Before ES6 `class`, functions were used to create multiple similar objects.
+```javascript
+function User(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function() {
+    console.log(`Hello, my name is ${this.name}`);
+  };
+}
+
+const user1 = new User("Alice", 25);
+const user2 = new User("Bob", 30);
+
+user1.greet(); // Hello, my name is Alice
+user2.greet(); // Hello, my name is Bob
+```
+
+> ✅ Useful when you need to create multiple objects with similar properties and methods.
+
 
