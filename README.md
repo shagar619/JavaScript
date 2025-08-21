@@ -4515,6 +4515,27 @@ const car1 = new Vehicle('GT', 'BMW', '1998cc');
 car1.display(); // GT is made by BMW with an engine size of 1998cc
 ```
 
-> ✅ Best for creating blueprints for similar objects.
+> ✅ Professional + modern approach (common in React, Node.js).
+
+
+**🔑 5. `Object.create()`:**
+
+Creates a new object with a specified prototype.
+```javascript
+const animal = {
+  speak() {
+    console.log("Animal speaks");
+  }
+};
+
+const dog = Object.create(animal);
+dog.bark = function() {
+  console.log("Dog barks");
+};
+
+dog.speak(); // Animal speaks
+dog.bark();  // Dog barks
+```
+> ✅ Useful for prototypal inheritance.
 
 
