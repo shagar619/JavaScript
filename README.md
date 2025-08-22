@@ -4636,3 +4636,24 @@ const { name, age, country } = user;
 > ✅ Cleaner, shorter, professional.
 
 
+**1. Basic Destructuring:**
+
+```javascript
+const user = { name: "Alice", age: 25, country: "USA" };
+
+const { name, age, country } = user;
+```
+
+**2. Assigning to New Variable Names (Aliases):**
+
+```javascript
+const user = { name: "Alice", age: 25, country: "USA" };
+
+const { name: userName, age: userAge, country: userCountry } = user;
+
+console.log(userName); // Alice
+console.log(userAge);  // 25
+console.log(userCountry); // USA
+```
+
+
