@@ -4774,3 +4774,19 @@ for (const { name, age } of users) {
 
 > ✅ Widely used in API responses when looping through data.
 
+
+
+
+## 🔹What is a Temporal Dead Zone?
+**Temporal Dead Zone (TDZ)** is a concept in JavaScript related to variable declarations. It refers to the period of time during which a variable is in an undefined state, before it is declared and initialized.
+
+**TDZ with `let`:**
+```javascript
+console.log(a); // ReferenceError: Cannot access 'a' before initialization
+let a = 5;
+```
+
+- `a` is hoisted to the top of scope
+- But it remains uninitialized until `let a = 10`;
+- Accessing it before that = TDZ
+
