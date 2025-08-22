@@ -4671,3 +4671,48 @@ console.log(userCountry); // Unknown
 > ✅ Useful for providing default values for missing properties.
 
 
+**4. Nested Destructuring:**
+
+```javascript
+const user = {
+  name: "Alice",
+  age: 25,
+  address: {
+    city: "Wonderland",
+    zip: "12345"
+  }
+};
+
+const {
+  name: userName,
+  address: { city: userCity, zip: userZip }
+} = user;
+
+console.log(userName); // Alice
+console.log(userCity); // Wonderland
+console.log(userZip);  // 12345
+```
+> ✅ Great for extracting values from nested objects.
+
+**5. Destructuring in Function Parameters:**
+
+Common in React & Node.js APIs.
+```javascript
+function greet({ name, age }) {
+  console.log(`Hello, ${name}! You are ${age} years old.`);
+}
+greet({ name: "Alice", age: 25 }); // Hello, Alice! You are 25 years old.
+```
+
+✅ Professional use case: destructuring props in React.
+``javascript
+function User({ name, age }) {
+  return (
+    <div>
+      <h2>{name}</h2>
+      <p>{age}</p>
+    </div>
+  );
+}
+```
+
