@@ -4705,7 +4705,7 @@ greet({ name: "Alice", age: 25 }); // Hello, Alice! You are 25 years old.
 ```
 
 ✅ Professional use case: destructuring props in React.
-``javascript
+```javascript
 function User({ name, age }) {
   return (
     <div>
@@ -4715,4 +4715,32 @@ function User({ name, age }) {
   );
 }
 ```
+
+
+**6. Destructuring with Rest Operator:**
+
+```javascript
+const user = { name: "Alice", age: 25, country: "USA" };
+
+const { name, ...rest } = user;
+
+console.log(name); // Alice
+console.log(rest); // { age: 25, country: "USA" }
+```
+
+> ✅ Very useful for getting “the rest of the object” (e.g., in Redux reducers or API responses).
+
+
+**7. Swapping Variables (Trick with Destructuring):**
+
+```javascript
+let a = 5;
+let b = 10;
+
+[a, b] = [b, a];
+
+console.log(a); // 10
+console.log(b); // 5
+```
+> ✅ Professional hack to swap without a temp variable.
 
