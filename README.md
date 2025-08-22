@@ -4790,3 +4790,35 @@ let a = 5;
 - But it remains uninitialized until `let a = 10`;
 - Accessing it before that = TDZ
 
+**TDZ with `const`:**
+```javascript
+console.log(b); // ReferenceError: Cannot access 'b' before initialization
+const b = 10;
+```
+
+- `b` is also hoisted
+- Remains uninitialized until `const b = 10`;
+- Accessing it before that = TDZ
+
+**TDZ with `var`:**
+```javascript
+console.log(c); // undefined
+var c = 15;
+```
+
+- `c` is hoisted
+- Initialized with `undefined` until `var c = 15`;
+- Accessing it before that = `undefined`, not TDZ
+
+**function Parameters in TDZ:**
+
+Even function default parameters can create TDZ situations:
+```javascript
+function example(x = y, y) {
+  console.log(x, y);
+}
+example(10); // ReferenceError: Cannot access 'y' before initialization
+```
+
+- `x` tries to use `y` before `y` is initialized → TDZ error.
+
