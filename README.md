@@ -4655,5 +4655,19 @@ console.log(userName); // Alice
 console.log(userAge);  // 25
 console.log(userCountry); // USA
 ```
+> ✅ Useful when you want variables with different names than object properties.
+
+**3. Default Values:**
+
+```javascript
+const user = { name: "Alice", age: 25 };
+
+const { name: userName, age: userAge, country: userCountry = "Unknown" } = user;
+
+console.log(userName); // Alice
+console.log(userAge);  // 25
+console.log(userCountry); // Unknown
+```
+> ✅ Useful for providing default values for missing properties.
 
 
