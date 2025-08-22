@@ -4613,3 +4613,26 @@ console.log(singleton.getName()); // Singleton Instance
 > ✅ Rare, but used in specific cases (like single-instance configs).
 
 
+## 🔹What is Object Destructuring in Javascript?
+
+👉 Object destructuring is a concise way to extract values from objects into variables using a syntax that mirrors the object’s structure.
+
+Instead of:
+```javascript
+const user = { name: "Alice", age: 25, country: "USA" };
+
+const name = user.name;
+const age = user.age;
+const country = user.country;
+```
+
+You can achieve the same result with destructuring:
+```javascript
+const user = { name: "Alice", age: 25, country: "USA" };
+
+const { name, age, country } = user;
+```
+
+> ✅ Cleaner, shorter, professional.
+
+
