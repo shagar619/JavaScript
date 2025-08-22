@@ -4744,3 +4744,33 @@ console.log(b); // 5
 ```
 > ✅ Professional hack to swap without a temp variable.
 
+**8. Dynamic Property Names:**
+
+```javascript
+const key = "name";
+const user = {
+  [key]: "Alice",
+  age: 25
+};
+
+console.log(user); // { name: "Alice", age: 25 }
+```
+
+> ✅ Useful for creating object properties dynamically.
+
+**9. Destructuring in Loops:**
+
+```javascript
+const users = [
+  { name: "Alice", age: 25 },
+  { name: "Bob", age: 30 },
+  { name: "Charlie", age: 35 }
+];
+
+for (const { name, age } of users) {
+  console.log(`Name: ${name}, Age: ${age}`);
+}
+```
+
+> ✅ Widely used in API responses when looping through data.
+
