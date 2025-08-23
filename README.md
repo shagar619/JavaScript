@@ -5243,3 +5243,51 @@ console.log(square(6)); // "Computing..." → 36
 > ✅ Now repeated calls with the same input are fast, since they use cached results.
 
 
+**Professional Real-World Use Cases:**
+
+**1. Expensive Calculations (e.g., Fibonacci):**
+```javascript
+function memoizedFibonacci() {
+  const cache = {};
+
+  return function fib(n) {
+    if (cache[n] !== undefined) return cache[n];
+    if (n <= 1) return n;
+
+    cache[n] = fib(n - 1) + fib(n - 2);
+    return cache[n];
+  };
+}
+
+const fibonacci = memoizedFibonacci();
+
+console.log(fibonacci(40)); // much faster than normal recursion
+```
+
+**2. API Request Caching:**
+
+Prevent re-fetching the same data multiple times.
+```javascript
+function memoizedFetch() {
+  const cache = new Map();
+
+  return async function(url) {
+    if (cache.has(url)) {
+      console.log("Fetching from cache:", url);
+      return cache.get(url);
+    }
+
+    console.log("Fetching from API:", url);
+    const response = await fetch(url);
+    const data = await response.json();
+
+    cache.set(url, data);
+    return data;
+  };
+}
+
+const getData = memoizedFetch();
+getData("https://jsonplaceholder.typicode.com/posts/1");
+getData("https://jsonplaceholder.typicode.com/posts/1"); // served from cache
+```
+
