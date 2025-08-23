@@ -4903,3 +4903,53 @@ Chain:
 `user → Person.prototype → Object.prototype → null`
 
 
+**Class (Syntactic Sugar over Prototypes):**
+
+```javascript
+class Animal {
+  speak() {
+    console.log("Animal speaks");
+  }
+}
+
+class Dog extends Animal {
+  bark() {
+    console.log("Woof!");
+  }
+}
+
+const dog = new Dog();
+dog.bark();  // "Woof!" (own method)
+dog.speak(); // "Animal speaks" (from Animal prototype)
+```
+
+- `dog` doesn’t have `speak`.
+- JS looks up → `Animal.prototype.speak`.
+
+Chain:
+`dog → Animal.prototype → Object.prototype → null`
+
+
+**✅ Professional Use Cases:**
+
+1. **Inheritance** (share methods across objects).
+2. **Polyfills** (add missing features to prototypes).
+
+```javascript
+if (!Array.prototype.customMethod) {
+  Array.prototype.customMethod = function() {
+    console.log("Custom method for arrays");
+  };
+}
+[1,2,3].customMethod(); // works on all arrays
+```
+
+3. **Performance** — avoids copying methods into each object instance.
+Visualization (Prototype Chain for an Array):
+```javascript
+myArray → Array.prototype → Object.prototype → null
+```
+
+So `myArray.push()` works because:
+- Not found in `myArray` → found in `Array.prototype.push`.
+
