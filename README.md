@@ -5166,3 +5166,31 @@ data = null;
 - ✅ Great for **API** results caching or **DOM** element data caching.
 
 
+**3. Tracking Metadata for DOM Elements:**
+
+You can associate metadata with DOM elements without worrying about memory leaks.
+
+```javascript
+const elementData = new WeakMap();
+
+function assignData(el, info) {
+  elementData.set(el, info);
+}
+
+function getData(el) {
+  return elementData.get(el);
+}
+
+// Example usage:
+const button = document.createElement("button");
+assignData(button, { clicked: 0 });
+
+button.addEventListener("click", () => {
+  let info = getData(button);
+  info.clicked++;
+  console.log("Button clicked:", info.clicked);
+});
+```
+
+✅ When the button is removed from **DOM** and no references remain,
+its entry in `WeakMap` is automatically garbage collected.
