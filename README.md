@@ -4822,3 +4822,65 @@ example(10); // ReferenceError: Cannot access 'y' before initialization
 
 - `x` tries to use `y` before `y` is initialized → TDZ error.
 
+
+
+
+
+
+## 🔹What is a prototype chain im Javascript?
+
+👉 In JavaScript, every object has an internal property called [`[Prototype]`] (accessible via `__proto__` in most engines).
+
+- When you try to access a property or method on an object, JavaScript looks for it in that object first.
+- If it’s not found, it looks up the prototype chain (the linked objects) until it reaches the top (`null`).
+
+This lookup process is called the Prototype Chain.
+
+✅ Example:
+```javascript
+const animal = {
+  eats: true,
+  walk() {
+    console.log("Animal walks");
+  }
+};
+
+const rabbit = {
+  jumps: true
+};
+
+// Set rabbit’s prototype to animal
+rabbit.__proto__ = animal;
+
+console.log(rabbit.jumps); // true (own property)
+console.log(rabbit.eats);  // true (inherited from animal)
+rabbit.walk();             // "Animal walks" (inherited)
+```
+
+Here:
+
+- `rabbit` doesn’t have `eats` or `walk()`.
+- JavaScript looks up the chain → finds them in `animal`.
+
+
+**Built-in Prototype Chain:**
+
+All objects in JS ultimately inherit from `Object.prototype`.
+
+```javascript
+const obj = {
+  key: "value"
+};
+
+console.log(obj.toString()); // [object Object]
+```
+
+- `toString` isn’t defined in `obj`.
+- JS looks up → `Object.prototype.toString`.
+
+The chain is:
+`obj → Object.prototype → null`
+
+**Functions and Prototypes:**
+
+Functions also use prototype chains.
