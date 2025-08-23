@@ -4973,7 +4973,7 @@ A `WeakSet` is a collection of objects in JavaScript that allows you to store un
 
 3. **No Iteration**: You cannot iterate over the items in a `WeakSet`. This is because the items are held weakly, and they may be garbage collected at any time.
 
-### Example:
+#### Example:
 ```javascript
 let obj1 = { name: "Alice" };
 let obj2 = { name: "Bob" };
@@ -4986,5 +4986,69 @@ console.log(weakset.has(obj1)); // true
 console.log(weakset.has(obj2)); // true
 
 obj1 = null; // Remove reference to obj1
+```
+
+#### Garbage Collection Example:
+```javascript
+let ws = new WeakSet();
+
+let user = { id: 1, name: "Charlie" };
+ws.add(user);
+
+console.log(ws.has(user)); // true
+
+user = null; // remove strong reference
+// Now the object is eligible for garbage collection
+// ws automatically removes it behind the scenes
+```
+
+Here, the `WeakSet` entry disappears automatically once `user` has no references.
+Unlike `Set`, where it would stay in memory unless manually deleted.
+
+
+**Professional Use Cases of WeakSet:**
+
+**1. Tracking object states without preventing GC:**
+
+Example: Keep track of which DOM nodes have already been processed.
+```javascript
+const processedNodes = new WeakSet();
+
+function processNode(node) {
+  if (!processedNodes.has(node)) {
+    console.log("Processing node:", node);
+    processedNodes.add(node);
+  }
+}
+
+// Assume node1 is a DOM element
+let node1 = document.createElement("div");
+processNode(node1); // first time → "Processing node"
+processNode(node1); // ignored (already processed)
+```
+If `node1` is later removed from the DOM and dereferenced, it gets garbage collected.
+
+
+**Private data storage for objects:**
+
+WeakSets can act like hidden flags for objects.
+```javascript
+const loggedInUsers = new WeakSet();
+
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+  login() {
+    loggedInUsers.add(this);
+  }
+  isLoggedIn() {
+    return loggedInUsers.has(this);
+  }
+}
+
+const user1 = new User("Alice");
+user1.login();
+console.log(user1.isLoggedIn()); // true
 ```
 
