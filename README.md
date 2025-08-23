@@ -5121,18 +5121,48 @@ WeakMaps can be used to store private data for objects without exposing it.
 const privateData = new WeakMap();
 
 class User {
-  constructor(name) {
+  constructor(name, password) {
     this.name = name;
-    privateData.set(this, { age: 0 });
+    privateData.set(this, { password });
   }
-  setAge(age) {
-    privateData.get(this).age = age;
-  }
-  getAge() {
-    return privateData.get(this).age;
+  checkPassword(pwd) {
+    return privateData.get(this).password === pwd;
   }
 }
 
-const user1 = new User("Alice");
-user1.setAge(30);
-console.log(user1.getAge()); // 30
+const user1 = new User("Alice", "secret123");
+console.log(user1.name); // Alice
+console.log(user1.password); // undefined ❌
+console.log(user1.checkPassword("secret123")); // true ✅
+```
+
+- ✅ Here, `password` is stored privately in a `WeakMap`, not directly on the object.
+
+
+**2. Caching / Memoization:**
+
+Use `WeakMap` to cache results of expensive computations linked to objects.
+```javascript
+const cache = new WeakMap();
+
+function computeHeavy(obj) {
+  if (!cache.has(obj)) {
+    let result = obj.num * 1000; // simulate heavy calculation
+    cache.set(obj, result);
+    console.log("Computed:", result);
+  }
+  return cache.get(obj);
+}
+
+let data = { num: 5 };
+
+computeHeavy(data); // Computed: 5000
+computeHeavy(data); // uses cache: 5000
+
+data = null; 
+// Once 'data' is gone, cache entry is garbage collected
+```
+
+- ✅ Great for **API** results caching or **DOM** element data caching.
+
+
