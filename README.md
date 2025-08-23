@@ -5052,3 +5052,87 @@ user1.login();
 console.log(user1.isLoggedIn()); // true
 ```
 
+
+
+
+
+
+## 🔹What is WeakMap in javascript?
+
+A `WeakMap` is a special type of `Map` where:
+
+1. Keys must be objects (not primitives).
+
+2. Keys are held as weak references (so if the object key is garbage-collected, its entry is removed automatically).
+3. It is not iterable (you can’t loop through it or get its size).
+4. Only has 4 methods:
+   - `set(key, value)`
+   - `get(key)`
+   - `has(key)`
+   - `delete(key)`
+
+A `WeakMap` is a collection of key-value pairs where the keys are objects and the values can be any value. It has the following characteristics:
+
+1. **Weak References**: The keys in a `WeakMap` are held weakly, meaning that if there are no other references to a key object, it can be garbage collected. This helps prevent memory leaks.
+
+2. **Only Objects as Keys**: A `WeakMap` can only have objects as keys, not primitive values (like numbers or strings).
+
+3. **No Iteration**: You cannot iterate over the entries in a `WeakMap`. This is because the keys are held weakly, and they may be garbage collected at any time.
+
+#### Basic Example:
+```javascript
+let obj1 = { name: "Alice" };
+let obj2 = { name: "Bob" };
+
+let weakmap = new WeakMap();
+weakmap.set(obj1, "Data for Alice");
+weakmap.set(obj2, "Data for Bob");
+
+console.log(weakmap.get(obj1)); // "Data for Alice"
+console.log(weakmap.get(obj2)); // "Data for Bob"
+
+obj1 = null; // Remove reference to obj1
+```
+
+#### Garbage Collection Example:
+```javascript
+let wm = new WeakMap();
+
+let user = { id: 1, name: "Charlie" };
+wm.set(user, { lastLogin: Date.now() });
+
+console.log(wm.get(user)); // { lastLogin: ... }
+
+user = null; // remove strong reference
+// Now the object is eligible for garbage collection
+// wm automatically removes it behind the scenes
+```
+
+Here, the `WeakMap` entry disappears automatically once `user` has no references.
+Unlike `Map`, where it would stay in memory unless manually deleted.
+
+
+**Professional Use Cases of WeakMap:**
+
+**1. Associating private data with objects:**
+WeakMaps can be used to store private data for objects without exposing it.
+
+```javascript
+const privateData = new WeakMap();
+
+class User {
+  constructor(name) {
+    this.name = name;
+    privateData.set(this, { age: 0 });
+  }
+  setAge(age) {
+    privateData.get(this).age = age;
+  }
+  getAge() {
+    return privateData.get(this).age;
+  }
+}
+
+const user1 = new User("Alice");
+user1.setAge(30);
+console.log(user1.getAge()); // 30
