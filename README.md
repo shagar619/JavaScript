@@ -5291,3 +5291,26 @@ getData("https://jsonplaceholder.typicode.com/posts/1");
 getData("https://jsonplaceholder.typicode.com/posts/1"); // served from cache
 ```
 
+
+**3. DOM Manipulation Optimization:**
+
+If a function repeatedly queries the same element, cache it.
+```javascript
+const getElement = (() => {
+  const cache = new Map();
+  return (id) => {
+    if (cache.has(id)) return cache.get(id);
+    const el = document.getElementById(id);
+    cache.set(id, el);
+    return el;
+  };
+})();
+
+let button = getElement("submitBtn"); // queried once
+let button2 = getElement("submitBtn"); // returned from cache
+```
+
+📊 **Memoization** vs **Caching**
+
+- **Caching** → General concept of storing results/data for reuse.
+- **Memoization** → Specific caching strategy applied to function results based on inputs.
