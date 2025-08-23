@@ -4884,3 +4884,22 @@ The chain is:
 **Functions and Prototypes:**
 
 Functions also use prototype chains.
+```javascript
+function Person(name) {
+  this.name = name;
+}
+Person.prototype.greet = function() {
+  console.log(`Hello, I'm ${this.name}`);
+};
+
+const user = new Person("Alice");
+user.greet(); // "Hello, I'm Alice"
+```
+
+- `user` doesn’t have `greet`.
+- JS looks up → `Person.prototype.greet`.
+
+Chain:
+`user → Person.prototype → Object.prototype → null`
+
+
