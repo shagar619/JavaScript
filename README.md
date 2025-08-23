@@ -5194,3 +5194,52 @@ button.addEventListener("click", () => {
 
 ✅ When the button is removed from **DOM** and no references remain,
 its entry in `WeakMap` is automatically garbage collected.
+
+
+
+## 🔹What is memoization in Javascript?
+
+👉 **Memoization** is the process of caching the results of expensive function calls so that if the same inputs occur again, the function returns the cached result instead of recalculating it.
+
+It’s a form of dynamic programming optimization.
+
+**Simple Example Without Memoization:**
+```javascript
+function slowSquare(n) {
+  console.log("Computing...");
+  return n * n;
+}
+
+console.log(slowSquare(5)); // "Computing..." → 25
+console.log(slowSquare(5)); // "Computing..." again → 25
+```
+
+> Here, the calculation is repeated every time, even for the same input.
+
+**With Memoization:**
+```javascript
+function memoizedSquare() {
+  const cache = {}; // store computed results
+
+  return function(n) {
+    if (cache[n] !== undefined) {
+      console.log("Fetching from cache...");
+      return cache[n];
+    }
+    console.log("Computing...");
+    let result = n * n;
+    cache[n] = result;
+    return result;
+  };
+}
+
+const square = memoizedSquare();
+
+console.log(square(5)); // "Computing..." → 25
+console.log(square(5)); // "Fetching from cache..." → 25
+console.log(square(6)); // "Computing..." → 36
+```
+
+> ✅ Now repeated calls with the same input are fast, since they use cached results.
+
+
