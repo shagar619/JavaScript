@@ -4953,3 +4953,38 @@ myArray → Array.prototype → Object.prototype → null
 So `myArray.push()` works because:
 - Not found in `myArray` → found in `Array.prototype.push`.
 
+
+
+## 🔹What is WeakSet in javascript?
+
+A `WeakSet` is similar to a `Set`, but with important differences:
+
+1. Stores only objects (not primitive values).
+2. Holds objects weakly referenced (doesn’t prevent garbage collection).
+3. Is not iterable (you can’t loop through it).
+4. Only supports 3 methods: `add()`, `has()`, `delete()`.
+
+
+A `WeakSet` is a collection of objects in JavaScript that allows you to store unique values of objects. It is similar to a `Set`, but with some key differences:
+
+1. **Weak References**: The objects in a `WeakSet` are held weakly, meaning that if there are no other references to an object stored in the `WeakSet`, it can be garbage collected. This helps prevent memory leaks.
+
+2. **Only Objects**: A `WeakSet` can only contain objects, not primitive values (like numbers or strings).
+
+3. **No Iteration**: You cannot iterate over the items in a `WeakSet`. This is because the items are held weakly, and they may be garbage collected at any time.
+
+### Example:
+```javascript
+let obj1 = { name: "Alice" };
+let obj2 = { name: "Bob" };
+
+let weakset = new WeakSet();
+weakset.add(obj1);
+weakset.add(obj2);
+
+console.log(weakset.has(obj1)); // true
+console.log(weakset.has(obj2)); // true
+
+obj1 = null; // Remove reference to obj1
+```
+
