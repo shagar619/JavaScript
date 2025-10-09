@@ -5314,3 +5314,7 @@ let button2 = getElement("submitBtn"); // returned from cache
 
 - **Caching** → General concept of storing results/data for reuse.
 - **Memoization** → Specific caching strategy applied to function results based on inputs.
+
+
+### <P align="center">Coding Problem</p>
+
