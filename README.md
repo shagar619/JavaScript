@@ -5315,7 +5315,7 @@ let button2 = getElement("submitBtn"); // returned from cache
 - **Caching** → General concept of storing results/data for reuse.
 - **Memoization** → Specific caching strategy applied to function results based on inputs.
 
-#### In JavaScript, how do you turn an Object into an Array []?
+#### ❓ In JavaScript, how do you turn an Object into an Array []?
 
 ```javascript
 let obj = { id: "1", name: "user22", age: "26", work: "programmer" };
@@ -5374,3 +5374,63 @@ undefined
 undefined
 ```
 
+#### Q2. Guess the outputs of the following code:
+
+```javascript
+// Code 1
+
+  let hero = {
+    powerLevel: 99,
+    getPower(){
+      return this.powerLevel;
+    }
+  }
+  
+  let getPower = hero.getPower;
+  
+  let hero2 = {powerLevel:42};
+  console.log(getPower());
+  console.log(getPower.apply(hero2));
+  
+
+
+  // Code 2
+  
+  const a = function(){
+    console.log(this);
+  
+    const b = {
+      func1: function(){
+        console.log(this);
+      }  
+    }
+  
+    const c = {
+      func2: ()=>{
+        console.log(this);
+      }
+    }
+  
+    b.func1();
+    c.func2();
+  }
+  
+  a();
+  
+
+
+  // Code 3
+  
+  const b = {
+    name:"Vivek",
+    f: function(){
+      var self = this;
+      console.log(this.name);
+      (function(){
+        console.log(this.name);
+        console.log(self.name);
+      })();
+    }
+  }
+  b.f();
+```
