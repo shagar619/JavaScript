@@ -5434,3 +5434,25 @@ undefined
   }
   b.f();
 ```
+
+**Output:**
+
+```javascript
+
+//Code 1 
+
+undefined
+42
+
+//Code 2
+
+global/window object
+object "b"
+global/window object
+
+//Code 3
+
+"Vivek"
+undefined
+"Vivek" 
+```
