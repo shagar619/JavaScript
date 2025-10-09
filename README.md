@@ -5318,3 +5318,40 @@ let button2 = getElement("submitBtn"); // returned from cache
 
 ### <P align="center">Coding Problem</p>
 
+#### Q1. What is the output of the following code?
+
+```javascript
+const b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+for (let i = 0; i < 10; i++) {
+  setTimeout(() => console.log(b[i]), 1000);
+}
+
+for (var i = 0; i < 10; i++) {
+  setTimeout(() => console.log(b[i]), 1000);
+}
+```
+
+**Output:**
+```
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+undefined
+undefined
+undefined
+undefined
+undefined
+undefined
+undefined
+undefined
+undefined
+undefined
+```
