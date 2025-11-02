@@ -5197,6 +5197,27 @@ its entry in `WeakMap` is automatically garbage collected.
 
 
 
+## 🔹How Does `this` Work in JavaScript?
+
+The value of `this` depends on how a function is invoked:
+
+1. **Default Binding**: Refers to the global object (`window` in browsers).
+2. **Implicit Binding**: Refers to the object before the dot.
+3. **Explicit Binding**: Defined using `call`, `apply`, or `bind`.
+4. **Arrow Functions**: Lexically inherit `this` from the surrounding scope.
+
+Example:
+```javascript
+const obj = {
+  name: 'Alice',
+  greet() {
+    console.log(this.name);
+  },
+};
+obj.greet(); // Alice
+```
+
+
 ## 🔹Function Declarations vs. Expressions
 
 Function declarations are fully hoisted (both declaration and definition), while function expressions are only partially hoisted (declaration without initialization).
