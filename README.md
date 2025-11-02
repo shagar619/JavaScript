@@ -5197,6 +5197,34 @@ its entry in `WeakMap` is automatically garbage collected.
 
 
 
+## 🔹Function Declarations vs. Expressions
+
+Function declarations are fully hoisted (both declaration and definition), while function expressions are only partially hoisted (declaration without initialization).
+
+Example:
+```javascript
+console.log(declared()); // Works
+function declared() {
+  return 'Declared function';
+}
+
+console.log(expr); // undefined
+console.log(expr()); // TypeError: expr is not a function
+var expr = function () {
+  return 'Function expression';
+};
+```
+
+**Imports**
+
+Import statements are hoisted, making imported modules available throughout the file.
+
+```javascript
+import foo from './foo';
+foo.doSomething(); // Accessible
+```
+
+
 ## 🔹What is memoization in Javascript?
 
 👉 **Memoization** is the process of caching the results of expensive function calls so that if the same inputs occur again, the function returns the cached result instead of recalculating it.
