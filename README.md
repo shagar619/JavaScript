@@ -4435,6 +4435,55 @@ class Counter {
 > ❌ When you need `arguments` object (use normal function instead).
 
 
+## 🔹What is the typical use case for anonymous functions?
+👉 An anonymous function is a function that is defined without a name. They are often used in situations where a function is needed temporarily or as a one-time use.
+**Typical Use Cases for Anonymous Functions:**
+1. **Callbacks:**
+Anonymous functions are commonly used as callback functions, especially in event handling or asynchronous operations.
+```javascript
+button.addEventListener("click", function() {
+  console.log("Button clicked!");
+});
+```
+2. **Immediately Invoked Function Expressions (IIFE):**
+Anonymous functions are often used in IIFEs to create a new scope and avoid polluting the global namespace.
+```javascript
+(function() {
+  console.log("IIFE executed");
+})();
+```
+3. **Array Methods:**
+Anonymous functions are frequently used with array methods like `map`, `filter`, and `reduce`.
+```javascript
+const numbers = [1, 2, 3, 4];
+const doubled = numbers.map(function(n) {
+  return n * 2;
+});
+console.log(doubled); // [2, 4, 6, 8]
+```
+4. **Promises:**
+Anonymous functions are often used in promise chains for handling resolved or rejected states.
+```javascript
+fetch("https://api.example.com/data")
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    console.log(data);
+  });
+```
+5. **Functional Programming:**
+Anonymous functions are used in functional programming paradigms to create higher-order functions.
+```javascript
+const add = function(a) {
+  return function(b) {
+    return a + b;
+  };
+};
+console.log(add(2)(3)); // 5
+```
+
+
 
 ## 🔹In JavaScript, how many different methods can you make an object?
 
