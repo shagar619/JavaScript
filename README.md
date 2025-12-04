@@ -4483,6 +4483,34 @@ const add = function(a) {
 console.log(add(2)(3)); // 5
 ```
 
+## 🔹Data binding in JavaScript
+Data binding in JavaScript refers to the process of connecting the data in your application (usually in JavaScript objects) to the user interface (UI) elements (like HTML). This ensures that when the data changes, the UI automatically updates to reflect those changes, and vice versa.
+There are two main types of data binding:**1. One-Way Data Binding:**
+In one-way data binding, the data flows in one direction—from the data model to the UI. When the data changes, the UI updates automatically, but changes in the UI do not affect the data model.
+```javascript
+const user = { name: "Alice" };
+const nameElement = document.getElementById("name");
+nameElement.textContent = user.name; // Initial binding
+// Update data model
+user.name = "Bob";
+nameElement.textContent = user.name; // Update UI
+```
+**2. Two-Way Data Binding:**
+In two-way data binding, changes in the data model automatically update the UI, and changes in the UI also update the data model. This is commonly used in frameworks like Angular and Vue.js.
+```html
+<input type="text" id="nameInput" />
+<script>
+  const user = { name: "Alice" };
+  const nameInput = document.getElementById("nameInput");
+  // Initial binding
+  nameInput.value = user.name;
+  // Update data model when UI changes
+  nameInput.addEventListener("input", function() {
+    user.name = nameInput.value;
+  });
+</script>
+```
+
 
 
 ## 🔹In JavaScript, how many different methods can you make an object?
