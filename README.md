@@ -4511,6 +4511,46 @@ In two-way data binding, changes in the data model automatically update the UI, 
 </script>
 ```
 
+## 🔹What are the potential issues caused by hoisting?
+Hoisting is a JavaScript mechanism where variable and function declarations are moved to the top of their containing scope during the compilation phase. While hoisting can be useful, it can also lead to several potential issues:
+1. **Undefined Variables:**
+```javascript
+console.log(x); // undefined
+var x = 5;
+```
+In this example, `x` is hoisted but not initialized, leading to `undefined` instead of a `ReferenceError`.
+2. **Function Hoisting Confusion:**
+```javascript
+foo(); // "Hello"
+function foo() {
+  console.log("Hello");
+}
+bar(); // TypeError: bar is not a function
+var bar = function() {
+  console.log("World");
+};
+```
+Function declarations are hoisted, but function expressions assigned to variables are not fully hoisted, leading to confusion.
+3. **Variable Shadowing:**
+```javascript
+var a = 10;
+function test() {
+  console.log(a); // undefined
+  var a = 20;
+}
+test();
+```
+In this case, the local variable `a` shadows the global variable, leading to unexpected behavior.
+4. **Temporal Dead Zone (TDZ) with `let` and `const`:**
+```javascript
+console.log(y); // ReferenceError: Cannot access 'y' before initialization
+let y = 10;
+```
+Variables declared with `let` and `const` are hoisted but not initialized, leading to a TDZ where accessing them before declaration results in a `ReferenceError`.
+5. **Readability and Maintainability:**
+Hoisting can make code harder to read and maintain, as it may not be immediately clear where variables and functions are declared and initialized.
+To avoid issues with hoisting, it's recommended to declare variables and functions at the top of their scope and to use `let` and `const` for variable declarations to prevent unintended behavior.
+
 
 
 ## 🔹In JavaScript, how many different methods can you make an object?
