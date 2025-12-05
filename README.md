@@ -4553,6 +4553,37 @@ To avoid issues with hoisting, it's recommended to declare variables and functio
 
 
 
+## 🔹 Explain the difference between checked, indeterminate, and form submission default values in JavaScript?
+In JavaScript, when dealing with form elements like checkboxes and radio buttons, there are three important states to understand: checked, indeterminate, and default values. Here's a breakdown of each:
+1. **Checked:**
+The "checked" property of a checkbox or radio button indicates whether the element is currently selected (checked) or not. You can set or get this property using JavaScript.
+```javascript
+const checkbox = document.getElementById("myCheckbox");
+// Set the checkbox to checked
+checkbox.checked = true;
+// Get the checked state
+console.log(checkbox.checked); // true
+```
+2. **Indeterminate:**
+The "indeterminate" property is specific to checkboxes and indicates a state that is neither checked nor unchecked. This state is often used to represent a "partially selected" state, such as when some, but not all, child checkboxes are selected. The indeterminate state does not affect the form submission; it is purely visual.
+```javascript
+const checkbox = document.getElementById("myCheckbox");
+// Set the checkbox to indeterminate
+checkbox.indeterminate = true;
+// Get the indeterminate state
+console.log(checkbox.indeterminate); // true
+```
+3. **Form Submission Default Values:**
+When a form is submitted, only the values of checked checkboxes and selected radio buttons are included in the form data sent to the server. Unchecked checkboxes and unselected radio buttons do not contribute any value to the submission. The default value of a checkbox or radio button is determined by its "value" attribute in the HTML.
+```html
+<form id="myForm">
+  <input type="checkbox" id="myCheckbox" name="option" value="1" />
+  <input type="checkbox" id="myCheckbox2" name="option" value="2" checked />
+  <button type="submit">Submit</button>
+</form>
+```
+
+
 ## 🔹In JavaScript, how many different methods can you make an object?
 
 In JavaScript, there are several ways to create an object, depending on your use case. Objects are the backbone of JS, so interviewers love asking this.
