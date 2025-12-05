@@ -4584,6 +4584,54 @@ When a form is submitted, only the values of checked checkboxes and selected rad
 ```
 
 
+## 🔹Explain custom error classes, async stack traces, and Error.cause in ES2022.
+**1. Custom Error Classes:**
+In ES2022, you can create custom error classes by extending the built-in `Error` class. This allows you to create more specific error types for your application, making error handling more precise and meaningful.
+```javascript
+class ValidationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "ValidationError";
+  }
+}
+try {
+  throw new ValidationError("Invalid input");
+} catch (error) {
+  console.log(error.name); // "ValidationError"
+  console.log(error.message); // "Invalid input"
+}
+```
+**2. Async Stack Traces:**
+ES2022 improves stack traces for asynchronous functions, making it easier to trace errors that occur in asynchronous code. When an error is thrown in an async function, the stack trace now includes the call stack leading up to the point where the async function was called, providing better context for debugging.
+```javascript
+async function fetchData() {
+  throw new Error("Failed to fetch data");
+}
+async function main() {
+  try {
+    await fetchData();
+  } catch (error) {
+    console.error(error.stack); // Improved stack trace
+  }
+}
+main();
+```
+**3. Error.cause:**
+The `Error.cause` property allows you to attach a cause (another error) to an error object. This is useful for error chaining, where you want to provide more context about the root cause of an error.
+```javascript
+try {
+  throw new Error("Low-level error");
+} catch (cause) {
+  const error = new Error("High-level error", { cause });
+  console.error(error.message); // "High-level error"
+  console.error(error.cause.message); // "Low-level error"
+}
+```
+
+
+
+
+
 ## 🔹In JavaScript, how many different methods can you make an object?
 
 In JavaScript, there are several ways to create an object, depending on your use case. Objects are the backbone of JS, so interviewers love asking this.
