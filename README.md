@@ -4665,6 +4665,43 @@ console.log(arrayWithUndefined[0]); // undefined (defined)
 ```
 
 
+## 🔹Compare `getElementsByClassName`, `querySelectorAll`, and the live vs static behavior of NodeList.
+**1. `getElementsByClassName`:**
+- Returns a live HTMLCollection of elements with the specified class name.
+```javascript
+const elements = document.getElementsByClassName("my-class");
+```
+- Live means that if the DOM changes (elements are added or removed), the HTMLCollection automatically updates to reflect those changes.
+```javascript
+const elements = document.getElementsByClassName("my-class");
+console.log(elements.length); // Initial count
+const newDiv = document.createElement("div");
+newDiv.className = "my-class";
+document.body.appendChild(newDiv);
+console.log(elements.length); // Updated count (live)
+```
+**2. `querySelectorAll`:**
+- Returns a static NodeList of elements that match the specified CSS selector.
+```javascript
+const elements = document.querySelectorAll(".my-class");
+```
+- Static means that the NodeList does not update automatically when the DOM changes. It reflects the state of the DOM at the time the method was called.
+```javascript
+const elements = document.querySelectorAll(".my-class");
+console.log(elements.length); // Initial count
+const newDiv = document.createElement("div");
+newDiv.className = "my-class";
+document.body.appendChild(newDiv);
+console.log(elements.length); // Still the same count (static)
+```
+**3. Live vs Static Behavior:**
+- **Live Collections (HTMLCollection):** Automatically reflect changes in the DOM. Useful when you want to keep track of elements that may change over time.
+- **Static Collections (NodeList):** Do not reflect changes in the DOM. Useful when you want a snapshot of the elements at a specific point in time.
+
+
+
+
+
 
 
 
