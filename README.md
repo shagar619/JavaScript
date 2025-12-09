@@ -4699,6 +4699,26 @@ console.log(elements.length); // Still the same count (static)
 - **Static Collections (NodeList):** Do not reflect changes in the DOM. Useful when you want a snapshot of the elements at a specific point in time.
 
 
+## 🔹Compare `innerText` vs `textContent`: layout thrashing, performance, and security implications.
+**1. `innerText`:**
+- Represents the visible text content of an element, taking into account CSS styles (like `display: none`).
+```javascript
+const element = document.getElementById("myElement");
+console.log(element.innerText);
+```
+- **Layout Thrashing:** Accessing `innerText` can cause layout thrashing because it forces the browser to recalculate styles and layout to determine what text is visible.
+- **Performance:** Generally slower than `textContent` due to the additional layout calculations.
+- **Security Implications:** `innerText` can be affected by CSS, which may lead to unexpected results if styles are manipulated. However, it does not execute HTML, so it is safe from XSS attacks.
+**2. `textContent`:**
+- Represents the text content of an element, including hidden text (ignores CSS styles).
+```javascript
+const element = document.getElementById("myElement");
+console.log(element.textContent);
+```
+- **Layout Thrashing:** Accessing `textContent` does not cause layout thrashing since it does not depend on styles or visibility.
+- **Performance:** Generally faster than `innerText` because it directly retrieves the text without additional calculations.
+- **Security Implications:** `textContent` is safe from XSS attacks as it does not interpret HTML tags; it simply returns the text.
+
 
 
 
