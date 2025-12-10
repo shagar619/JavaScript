@@ -4755,6 +4755,31 @@ null === undefined // false
 [] === ![] // false
 ```
 
+## 🔹What is top-level await in ES Modules, how does it change module execution order, and what problems can it cause when building large applications?
+**Top-Level Await in ES Modules:**
+Top-level await allows you to use the `await` keyword outside of async functions, directly at the top level of an ES module. This means you can pause the execution of a module until a promise is resolved, making it easier to handle asynchronous operations during module initialization.
+```javascript
+// exampleModule.js
+const data = await fetchData(); // Top-level await
+console.log(data);
+```
+**Changes in Module Execution Order:**
+With top-level await, the execution of a module can be delayed until the awaited promise is resolved. This can affect the order in which modules are executed, especially if multiple modules depend on each other and use top-level await. The module that uses top-level await will not complete its execution until the awaited promise is resolved, potentially causing delays in loading dependent modules.
+```javascript
+// moduleA.js
+export const dataA = await fetchDataA(); // Top-level await
+// moduleB.js
+import { dataA } from './moduleA.js'; // Will wait for moduleA to finish
+```
+**Problems in Large Applications:**
+
+1. **Circular Dependencies:** If two modules depend on each other, top-level await can lead to deadlocks.
+2. **Module Loading Delays:** Modules that use top-level await will block the loading of other modules, potentially slowing down the application.
+3. **Debugging Complexity:** Debugging becomes more complex because the execution order is less predictable.
+4. **Performance Impact:** The performance of the application can be impacted due to the blocking nature of top-level await.
+
+
+
 
 
 
