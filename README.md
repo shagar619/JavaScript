@@ -4779,8 +4779,39 @@ import { dataA } from './moduleA.js'; // Will wait for moduleA to finish
 4. **Performance Impact:** The performance of the application can be impacted due to the blocking nature of top-level await.
 
 
+## 🔹Explain differences between ES Modules (import/export), CommonJS (require/module.exports), and dynamic import(). How do import maps and top-level await change the way we structure modern JS apps?
+**1. ES Modules (import/export):**
+- Native module system in JavaScript (supported in browsers and Node.js).
 
-
+**2. CommonJS (require/module.exports):**
+- Node.js specific module system.
+- Uses synchronous `require()` and `module.exports`.
+- Designed for server-side environments.
+**3. Dynamic import():**
+- Allows importing modules asynchronously at runtime.
+```javascript
+import('./module.js').then(module => {
+  // Use the module
+});
+```
+- Useful for code-splitting and lazy loading.
+**4. Import Maps:**
+- A way to control the behavior of module imports in browsers.
+- Allows you to define custom paths for modules.
+```json
+{
+  "imports": {
+    "lodash": "/path/to/lodash.js"
+  }
+}
+```
+**5. Top-Level Await:**
+- Allows using `await` at the top level of ES modules.
+- Changes module execution order by allowing modules to pause execution until promises are resolved.
+**Impact on Modern JS Apps:**
+- Enables more readable and synchronous-looking code in modules.
+- Can simplify asynchronous initialization logic.
+- May introduce complexity in managing module loading order and dependencies.
 
 
 
