@@ -4436,6 +4436,7 @@ class Counter {
 
 
 ## 🔹What is the typical use case for anonymous functions?
+
 👉 An anonymous function is a function that is defined without a name. They are often used in situations where a function is needed temporarily or as a one-time use.
 **Typical Use Cases for Anonymous Functions:**
 1. **Callbacks:**
@@ -4782,11 +4783,29 @@ import { dataA } from './moduleA.js'; // Will wait for moduleA to finish
 ## 🔹Explain differences between ES Modules (import/export), CommonJS (require/module.exports), and dynamic import(). How do import maps and top-level await change the way we structure modern JS apps?
 **1. ES Modules (import/export):**
 - Native module system in JavaScript (supported in browsers and Node.js).
+- Uses `import` and `export` keywords for module management.
+```javascript
+// module.js
+export const greet = () => console.log("Hello, ES Modules!");
+// main.js
+import { greet } from './module.js';
+greet();
+```
 
 **2. CommonJS (require/module.exports):**
 - Node.js specific module system.
 - Uses synchronous `require()` and `module.exports`.
 - Designed for server-side environments.
+```javascript
+// module.js
+module.exports.greet = () => console.log("Hello, CommonJS!");
+// main.js
+const { greet } = require('./module.js');
+greet();
+```
+
+
+
 **3. Dynamic import():**
 - Allows importing modules asynchronously at runtime.
 ```javascript
@@ -4795,6 +4814,7 @@ import('./module.js').then(module => {
 });
 ```
 - Useful for code-splitting and lazy loading.
+
 **4. Import Maps:**
 - A way to control the behavior of module imports in browsers.
 - Allows you to define custom paths for modules.
@@ -4812,6 +4832,39 @@ import('./module.js').then(module => {
 - Enables more readable and synchronous-looking code in modules.
 - Can simplify asynchronous initialization logic.
 - May introduce complexity in managing module loading order and dependencies.
+
+
+
+## 🔹What are iterators and generators in JavaScript and what are they used for?
+**Iterators:**
+- An iterator is an object that provides a way to access elements of a collection (like arrays, strings, etc.) one at a time.
+- An iterator must implement a `next()` method that returns an object with two properties: `value` (the next value) and `done` (a boolean indicating if the iteration is complete).
+```javascript
+const myArray = [1, 2, 3];
+const iterator = myArray[Symbol.iterator]();
+console.log(iterator.next()); // { value: 1, done: false }
+console.log(iterator.next()); // { value: 2, done: false }
+console.log(iterator.next()); // { value: 3, done: false }
+console.log(iterator.next()); // { value: undefined, done: true }
+```
+**Generators:**
+- A generator is a special type of function that can pause its execution and later resume from where it left off.
+- Generators are defined using the `function*` syntax and use the `yield` keyword to produce a series of values.
+```javascript
+function* myGenerator() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+const gen = myGenerator();
+console.log(gen.next()); // { value: 1, done: false }
+console.log(gen.next()); // { value: 2, done: false }
+console.log(gen.next()); // { value: 3, done: false }
+console.log(gen.next()); // { value: undefined, done: true }
+```
+**Uses:**
+- **Iterators** are used to traverse collections in a controlled manner, allowing for custom iteration logic.
+- **Generators** are used for creating iterators easily, managing asynchronous code (with `async`/`await`), and implementing lazy evaluation (producing values on demand).
 
 
 
