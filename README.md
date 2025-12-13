@@ -4871,6 +4871,7 @@ console.log(gen.next()); // { value: undefined, done: true }
 
 ## 🔹What are JavaScript polyfills for?
 JavaScript polyfills are pieces of code (usually JavaScript functions) that provide modern functionality on older browsers that do not natively support it. They "fill in" the gaps by implementing features that are part of newer versions of JavaScript (ECMAScript) or web APIs, allowing developers to use these features without worrying about compatibility issues.
+
 **Purpose of Polyfills:**
 1. **Backward Compatibility:** Polyfills enable developers to use modern JavaScript features while ensuring that their code works on older browsers that may not support those features.
 2. **Feature Detection:** Polyfills often include feature detection to check if a particular feature is supported by the browser. If not, the polyfill provides an alternative implementation.
@@ -4906,9 +4907,25 @@ if (!Array.prototype.includes) {
 }
 ```
 
+**Popular Polyfill Tools**
+- **Babel Polyfill:** A tool that provides polyfills for modern JavaScript features.
+```javascript
+// Babel Polyfill usage example
+import 'babel-polyfill';
+```
 
+- **Core-js:** A modular library that provides polyfills for ECMAScript features.
+```javascript
+// Core-js usage example
+import 'core-js/actual/array/flat-map'; // Example: polyfill for Array.prototype.flatMap
+[1, 2].flatMap((it) => [it, it]); // Output: [1, 1, 2, 2]
+```
 
-
+- **Polyfill.io:** A service that delivers polyfills based on the user's browser capabilities.
+```html
+<script src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.includes,Promise">
+</script>
+```
 
 
 
