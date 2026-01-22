@@ -6000,3 +6000,18 @@ global/window object
 undefined
 "Vivek" 
 ```
+
+#### Write a Program to reverse a string in JavaScript.
+
+```javascript
+function reverseString(str) {
+  return str.split('').reverse().join('');
+}
+console.log(reverseString("Hello World")); // "dlroW olleH"
+```
+
+Output:
+```
+"dlroW olleH"
+```
+
