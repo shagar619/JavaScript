@@ -6032,3 +6032,16 @@ true
 false
 ```
 
+#### Write a Program to find the largest number in an array.
+
+```javascript
+function findLargestNumber(arr) {
+  return Math.max(...arr);
+}
+console.log(findLargestNumber([3, 5, 7, 2, 8])); // 8
+```
+
+Output:
+```
+8
+```
