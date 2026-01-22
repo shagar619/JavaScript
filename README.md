@@ -6015,3 +6015,20 @@ Output:
 "dlroW olleH"
 ```
 
+#### Write a Program to check whether a string is a palindrome string.
+
+```javascript
+function isPalindrome(str) {
+  const cleanedStr = str.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
+  const reversedStr = cleanedStr.split('').reverse().join('');
+  return cleanedStr === reversedStr;
+}
+console.log(isPalindrome("A man, a plan, a canal: Panama")); // true
+console.log(isPalindrome("Hello")); // false
+```
+Output:
+```
+true
+false
+```
+
