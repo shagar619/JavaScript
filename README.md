@@ -6234,3 +6234,106 @@ const sym1 = Symbol("key");
 const sym2 = Symbol("key");
 console.log(sym1 === sym2); // false
 ```
+
+
+## ES7 (2016) Through ES13+: Evolutionary Enhancements
+
+**1. ES7 (2016)**
+
+- `Array.prototype.includes()`: Checks if an array includes a certain value.
+```javascript
+[1, 2, 3].includes(2); // true
+```
+- Exponentiation Operator (`**`): Simplified exponentiation syntax.
+```javascript
+2 ** 3; // 8
+```
+
+**2. ES8 (2017)**
+
+- `async`/`await`: Syntactic sugar over Promises for cleaner asynchronous code.
+```javascript
+async function fetchData() {
+  const data = await fetch("https://api.example.com/data");
+  return data.json();
+}
+```
+
+- `Object.values()` and `Object.entries()`: Methods to get object values and entries.
+```javascript
+const obj = { a: 1, b: 2 };
+console.log(Object.values(obj)); // [1, 2]
+console.log(Object.entries(obj)); // [['a', 1], ['b', 2]]
+```
+
+**3. ES9 (2018)**
+
+- Rest/Spread Properties for Objects: Similar to arrays, for objects.
+```javascript
+const obj1 = { a: 1, b: 2 };
+const obj2 = { ...obj1, c: 3 };
+console.log(obj2); // { a: 1, b: 2, c: 3 }
+```
+
+- Asynchronous Iteration: `for await...of` for iterating over async data sources.
+```javascript
+async function process(stream) {
+  for await (const chunk of stream) {
+    console.log(chunk);
+  }
+}
+```
+
+**4. ES10 (2019)**
+
+- `Array.prototype.flat()` and `Array.prototype.flatMap()`: Flatten nested arrays.
+```javascript
+[1, [2, [3]]].flat(2); // [1, 2, 3]
+```
+- `Object.fromEntries()`: Converts key-value pairs into an object.
+```javascript
+const entries = [['a', 1], ['b', 2]];
+const obj = Object.fromEntries(entries);
+console.log(obj); // { a: 1, b: 2 }
+```
+
+**5. ES11 (2020)**
+- Dynamic `import()`: Asynchronous module loading.
+```javascript
+import('./module.js').then(module => {
+  module.doSomething();
+});
+```
+
+- `BigInt`: New primitive type for large integers.
+```javascript
+const bigInt = BigInt(9007199254740991);
+console.log(bigInt + 1n); // 9007199254740992n
+```
+
+**6. ES12 (2021)**
+- Logical Assignment Operators: `&&=`, `||=`, `??=`.
+```javascript
+let a = true;
+a &&= false; // a is now false
+```
+
+- Numeric Separators: Improves readability of large numbers.
+```javascript
+const largeNumber = 1_000_000; // 1000000
+```
+
+**7. ES13 (2022)**
+- `at()` Method for Arrays and Strings: Access elements using negative indices.
+```javascript
+const arr = [10, 20, 30];
+console.log(arr.at(-1)); // 30
+```
+
+- `Object.hasOwn()`: Checks if an object has a property as its own (not inherited).
+```javascript
+const obj = { a: 1 };
+console.log(Object.hasOwn(obj, 'a')); // true
+```
+
+These features collectively enhance code readability, maintainability, and performance in modern JavaScript applications, making development more efficient and enjoyable.
