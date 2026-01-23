@@ -6073,3 +6073,164 @@ Output:
 [1, 2, 3, 4, 5, 6]
 ```
 
+## 🔹What are some new features introduced in ES6 and later versions of JavaScript, and how do they impact modern JavaScript applications?
+
+#### ES6 (ECMAScript 2015): Foundational Modernization
+
+**1. Block-Scoped Declarations: `let` and `const`**
+- `let`: Block-scoped variable declaration.
+```javascript
+let x = 10;
+if (true) {
+  let x = 20; // different 'x'
+  console.log(x); // 20
+}
+console.log(x); // 10
+```
+- `const`: Block-scoped constant declaration.
+```javascript
+const y = 30;
+y = 40; // Error: Assignment to constant variable.
+```
+
+**2. Arrow Functions**
+
+- Shorter function syntax.
+- Lexical binding of `this`, `super`, and `arguments.
+`
+- More expressive functional programming patterns.
+- Eliminates common pitfalls related to dynamic `this`.
+
+```javascript
+const add = (a, b) => a + b;
+console.log(add(2, 3)); // 5
+```
+
+**3. Classes and Enhanced Object Literals**
+
+- `class` syntax over prototype-based inheritance.
+- Object literal enhancements (shorthand properties, method definition shorthand, computed keys).
+
+```javascript
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+  greet() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+}
+const john = new Person("John");
+john.greet(); // Hello, my name is John
+```
+
+**4. Template Literals**
+
+- Interpolated strings.
+- Multi-line string support.
+- Tagged templates.
+- Cleaner string composition.
+- Widely used in UI frameworks for templating and internal DSLs.
+
+```javascript
+const name = "Alice";
+console.log(`Hello, ${name}!`); // Hello, Alice!
+```
+
+**5. Destructuring Assignment**
+
+- Extract values from arrays or objects into distinct variables.
+- Simplifies data extraction from complex structures.
+
+```javascript
+const user = { name: "Bob", age: 25 };
+const { name, age } = user;
+console.log(name); // Bob
+console.log(age);  // 25
+```
+
+**6. Modules (`import`/`export`)**
+
+- Native module system for better code organization.
+- Facilitates code reuse and maintainability.
+
+```javascript
+// math.js
+export function add(a, b) {
+  return a + b;
+}
+// main.js
+import { add } from './math.js';
+console.log(add(2, 3)); // 5
+```
+
+**7. Promises**
+
+- Native support for asynchronous programming.
+- Simplifies handling of asynchronous operations.
+
+```javascript
+const fetchData = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve("Data fetched"), 1000);
+  });
+};
+fetchData().then(data => console.log(data)); // Data fetched
+```
+
+**8. Iterators, Generators, and `for...of`**
+
+- Custom iteration protocols.
+- Simplifies iteration over collections.
+
+```javascript
+const arr = [1, 2, 3];
+for (const num of arr) {
+  console.log(num); // 1, 2, 3
+}
+```
+
+**9. Maps, Sets, WeakMaps, WeakSets**
+
+- New data structures for better data management.
+
+```javascript
+const map = new Map();
+map.set("key1", "value1");
+console.log(map.get("key1")); // value1
+```
+
+**10. Default Parameters and Rest/Spread Operators**
+
+- Default function parameters.
+
+```javascript
+function greet(name = "Guest") {
+  console.log(`Hello, ${name}!`);
+}
+greet(); // Hello, Guest!
+```
+
+- Rest operator for variable number of arguments.
+```javascript
+function sum(...numbers) {
+  return numbers.reduce((acc, curr) => acc + curr, 0);
+}
+console.log(sum(1, 2, 3)); // 6
+```
+- Spread operator for expanding arrays/objects.
+```javascript
+const arr1 = [1, 2];
+const arr2 = [...arr1, 3, 4];
+console.log(arr2); // [1, 2, 3, 4]
+```
+
+**11. Symbol**
+
+- Unique and immutable data type for object property keys.
+
+```javascript
+const sym1 = Symbol("key");
+const sym2 = Symbol("key");
+console.log(sym1 === sym2); // false
+```
