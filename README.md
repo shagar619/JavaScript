@@ -6059,3 +6059,17 @@ Output:
 [1, 2, 3, 4, 5]
 ```
 
+#### Write a Program to flatten a nested array.
+
+```javascript
+function flattenArray(arr) {
+  return arr.flat(Infinity);
+}
+console.log(flattenArray([1, [2, [3, 4], 5], 6])); // [1, 2, 3, 4, 5, 6]
+```
+
+Output:
+```
+[1, 2, 3, 4, 5, 6]
+```
+
