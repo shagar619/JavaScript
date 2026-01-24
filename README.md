@@ -6337,3 +6337,26 @@ console.log(Object.hasOwn(obj, 'a')); // true
 ```
 
 These features collectively enhance code readability, maintainability, and performance in modern JavaScript applications, making development more efficient and enjoyable.
+
+
+
+## Write a Program to count the occurrences of a character in a string in JavaScript?
+
+```javascript
+function countCharacter(str, char) {
+  let count = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === char) {
+      count++;
+    }
+  }
+  return count;
+}
+console.log(countCharacter("hello world", "o")); // 2
+```
+
+Output:
+```
+2
+```
+
