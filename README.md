@@ -6456,3 +6456,20 @@ Output:
 7
 ```
 
+## Write a Program to find the GCD (Greatest Common Divisor) of two numbers in JavaScript?
+
+```javascript
+function gcd(a, b) {
+  if (b === 0) {
+    return a;
+  }
+  return gcd(b, a % b);
+}
+console.log(gcd(48, 18)); // 6
+```
+
+Output:
+```
+6
+```
+
