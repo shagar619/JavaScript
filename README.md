@@ -6415,3 +6415,19 @@ Output:
 true
 false
 ```
+
+
+## Write a Program to sort an array in Ascending Order in JavaScript?
+
+```javascript
+function sortArray(arr) {
+  return arr.sort((a, b) => a - b);
+}
+console.log(sortArray([5, 2, 9, 1, 5, 6])); // [1, 2, 5, 5, 6, 9]
+```
+
+Output:
+```
+[1, 2, 5, 5, 6, 9]
+```
+
