@@ -6431,3 +6431,28 @@ Output:
 [1, 2, 5, 5, 6, 9]
 ```
 
+## Write a Program to find the second largest number in an array in JavaScript?
+
+```javascript
+function secondLargest(arr) {
+  let largest = -Infinity;
+  let secondLargest = -Infinity;
+
+  for (let num of arr) {
+    if (num > largest) {
+      secondLargest = largest;
+      largest = num;
+    } else if (num > secondLargest && num < largest) {
+      secondLargest = num;
+    }
+  }
+  return secondLargest;
+}
+console.log(secondLargest([3, 5, 7, 2, 8])); // 7
+```
+
+Output:
+```
+7
+```
+
