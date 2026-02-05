@@ -6473,3 +6473,23 @@ Output:
 6
 ```
 
+## Write a Program to find the LCM (Least Common Multiple) of two numbers in JavaScript?
+
+```javascript
+function lcm(a, b) {
+  return (a * b) / gcd(a, b);
+}
+function gcd(a, b) {
+  if (b === 0) {
+    return a;
+  }
+  return gcd(b, a % b);
+}
+console.log(lcm(4, 6)); // 12
+```
+
+Output:
+```
+12
+```
+
